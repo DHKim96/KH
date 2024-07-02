@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="insertPlayers">
+		INSERT INTO PLAYERS 
+		VALUES(SEQ_PLAYERS.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+	</entry>
+	<entry key="insertEnemies">
+		INSERT INTO ENEMIES
+		VALUES(SEQ_ENEMIES.NEXTVAL, ?, ?, ?, ?, ?, ?)
+	</entry>
+	<entry key="insertMaps">
+		INSERT INTO MAPS 
+		VALUES(SEQ_MAPS.NEXTVAL, ?, ?, ?)
+	</entry>
+	<entry key="selectPlayers">
+		SELECT * FROM PLAYERS
+	</entry>
+	<entry key="updatePlayers">
+		UPDATE PLAYERS 
+		SET PJOB = ?
+			,PLEVEL = ?
+			,MAX_EXPERIENCE = ?
+			,EXPERIENCE = ?
+			,MAX_HP = ?
+			,HP = ?
+			,MAX_MP = ?
+			,MP = ?
+			,STRENGTH = ?
+			,INTELLIGENCE = ?
+			,AGILITY = ?
+			,MONEY = ?
+		WHERE PLAYER_NAME = ?
+	</entry>
+	<entry key="updateEnemies">
+		UPDATE ENEMIES 
+		SET HEALTH = ?
+			,STRENGTH = ?
+			,AGILITY = ?
+			,EXPERIENCE = ?
+			,MONEY = ?
+		WHERE ENEMY_NAME = ?
+	</entry>
+	<entry key="updateMaps">
+		UPDATE MAPS 
+		SET MAP_TYPE = ?
+			,REQUIRED_LEVEL = ?
+		WHERE MAP_NAME = ?
+	</entry>
+</properties>

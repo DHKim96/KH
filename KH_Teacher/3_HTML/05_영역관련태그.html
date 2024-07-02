@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영역관련태그</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+        span{
+            border: 1px solid black;
+            width: 200px;
+            height: 200px;
+            /*인라인 요소에는 대부분 가로, 세로길이 지정 불가*/
+        }
+    </style>
+</head>
+<body>
+    <!--
+        블럭요소 : 한 줄 단위로 영역을 차지함
+                  줄바꿈이 적용되어 이미 존재하는 태그의 다음줄에 다음영역이 잡힘
+                  (p, pre, "div", ...)
+        인라인요소 : content(내용) 영역에 해당하는 부분만 영역을 차지하는 요소
+                  줄바꿈이 적용되지 않아 다음영역이 바로 옆으로 잡힘
+                  (b, mark, s, img, "span", ...)
+    -->
+
+    <h1>영역관련태그</h1>
+    <h2>div태그와 span태그의 차이점 1 : 줄바꿈적용</h2>
+
+    <h3>div태그</h3>
+    <p>div 태그는 블럭요소로 한 줄 단위로 영역을 차지(이미 존재하는 태그 다음줄에 영역이 잡힘)</p>
+    
+    <div style="background: red;">첫번째 영역</div>
+    <div style="background: orange;">두번째 영역</div>
+    <div style="background: yellow;">세번째 영역</div>
+
+    <h3>span태그</h3>
+    <p>span태그는 인라인 요소로 content 영역만 차지(줄바꿈이 발생되지않고 옆으로 영역이 잡힌다.)</p>
+
+    <span style="background: red;">첫번째 영역</span>
+    <span style="background: orange;">두번째 영역</span>
+    <span style="background: yellow;">세번째 영역</span>
+
+    <h2>div태그와 span태그의 차이점2 : 영역지정방식</h2>
+    
+    <h3>div태그 : 사각형 박스로 영역을 지정</h3>
+    <div >
+        오픈AI 최고경영자 샘 올트먼이 글로벌 반도체 산업 재편에 최대 7조 달러(약 9000조원) 자금 조달을 추진하고 있다.” 지난 2월8일 〈월스트리트저널〉(WSJ)의 보도가 전 세계적인 이목을 끌었다. 무엇보다도 비현실적 투자 목표 금액에 대해 갑론을박이 오갔다. 7조 달러는 마이크로소프트와 애플의 시가총액을 더한 금액(약 6조 달러)보다 크다. WSJ는 샘 올트먼이 아랍에미리트 정부 등 중동 투자자
+    </div>
+    <br><br><br><br><br><br>
+    <h3>span 태그 : 문장단위로 영역을 지정</h3>
+    <span >오픈AI 최고경영자 샘 올트먼이 글로벌 반도체 산업 재편에 최대 7조 달러(약 9000조원) 
+        자금 조달을 추진하고 있다.
+        ” 지난 2월8일 〈월스트리트저널〉(WSJ)의 보도가 전 세계적인 이목을 끌었다. 무엇보다도 비현실적 투자 목표 금액에 대해 갑론을박이 오갔다. 7조 달러는 마이크로소프트와 애플의 시가총액을 더한 금액(약 6조 달러)보다 크다. WSJ는 샘 올트먼이 아랍에미리트 정부 등 중동 투자자
+        “오픈AI 최고경영자 샘 올트먼이 글로벌 반도체 산업 재편에 최대 7조 달러(약 9000조원) 자금 조달을 추진하고 있다.” 지난 2월8일 〈월스트리트저널〉(WSJ)의 보도가 전 세계적인 이목을 끌었다. 무엇보다도 비현실적 투자 목표 금액에 대해 갑론을박이 오갔다. 7조 달러는 마이크로소프트와 애플의 시가총액을 더한 금액(약 6조 달러)보다 크다. WSJ는 샘 올트먼이 아랍에미리트 정부 등 중동 투자자를 중심으로 자금 조달을 추진하고 있다고 보도했다.
+    </span>
+
+    <hr>
+
+    <h1>iframe</h1>
+    <p>웹 문서 안에 다른 웹페이지를 추가하는 태그(인라인요소)</p>
+
+    <iframe src="04_이미지및멀티미디어태그.html" width="600" height="800"></iframe>
+    
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/cp4aUznNvJ0?si=FeCXJiTJxQ4vkFVn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</body>
+</html>

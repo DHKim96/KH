@@ -1,0 +1,15 @@
+body{
+    margin: auto;
+    padding: 0;
+    height: 1000px;
+    width: 1200px;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+div,
+input,
+img,
+p{
+    box-sizing: border-box;
+}
+

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="membersScrapMapper">
+  	<resultMap id="membersResultSet" type="Members">
+  		<result column="MEMBERS_NO" property="membersNo" />
+  		<result column="MEMBERS_ID" property="membersId" />
+  		<result column="MEMBERS_PWD" property="membersPwd" />
+  		<result column="MEMBERS_NAME" property="membersName" />
+  		<result column="MEMBERS_BIRTH" property="membersBirth" />
+  		<result column="MEMBERS_PHONE" property="membersPhone" />
+  		<result column="MEMBERS_EMAIL" property="membersEmail" />
+  		<result column="GENDER" property="gender" />
+  		<result column="MEMBERS_TYPE" property="membersType" />
+  		<result column="COMPANY_NAME" property="companyName" />
+  		<result column="REPRESENTATATIVE" property="representative" />
+  		<result column="COMPANY_PLACE" property="companyPlace" />
+  		<result column="COMPANY_PHONE" property="companyPhone" />
+  		<result column="COMPANY_EMAIL" property="companyEmail" />
+  		<result column="REG_NUM" property="regNum" />
+  		<result column="MEMBERS_ENROLL_TIME" property="membersEnrollTime" />
+  		<result column="MEMBERS_MODIFY_TIME" property="membersModifyTime" />
+  		<result column="MEMBERS_STATUS" property="membersStatus" />
+  		<result column="PROFILE" property="profile" />
+  	</resultMap>
+  	<resultMap id="mediaResultSet" type="Media">
+  		<result column="MEDIA_ID" property="mediaId"/>
+  		<result column="BOARD_ID" property="mediaBoardId"/>
+  		<result column="MEMBERS_NO" property="mediaMembersNo"/>
+  		<result column="MEDIA_TYPE" property="mediaType"/>
+  		<result column="ORIGIN_NAME" property="originName"/>
+  		<result column="CHANGE_NAME" property="changeName"/>
+  		<result column="FILE_PATH" property="filePath"/>
+  		<result column="FILE_LEVEL" property="fileLevel"/>
+  		<result column="UPLOAD_DATE" property="uploadDate"/>
+  		<result column="MEDIA_STATUS" property="mediaStatus"/>
+  		<result column="PRODUCT_ID" property="mediaProductId"/>
+  	</resultMap>
+  	<resultMap id="scrapResultSet" type="Scrap">
+  		<result column="SCRAP_ID" property="scrapId"/>
+  		<result column="SCRAP_TYPE" property="scrapType"/>
+  		<result column="MEMBERS_NO" property="scrapMembersNo"/>
+  		<result column="BOARD_ID" property="scrapBoardId"/>
+  		<result column="MEDIA_ID" property="scrapMediaId"/>
+  		<result column="PRODUCT_ID" property="scrapProductId"/>
+  		<result column="SCRAP_CREATE_TIME" property="scrapCreateTime"/>
+  		<result column="SCRAP_STATUS" property="scrapStatus"/>
+  	</resultMap>
+  	<select id="idCheck" resultType="_int">
+  		SELECT COUNT(*) FROM MEMBERS WHERE MEMBERS_ID = #{checkId}
+  	</select>
+  	 <select id="loginMembers" resultMap="membersResultSet" parameterType="Members">
+  	SELECT
+		    MEMBERS_NO
+			,MEMBERS_ID
+			,MEMBERS_PWD
+			,MEMBERS_NAME
+			,MEMBERS_BIRTH
+			,MEMBERS_PHONE
+			,MEMBERS_EMAIL
+			,GENDER
+			,MEMBERS_TYPE
+			,COMPANY_NAME
+			,REPRESENTATATIVE
+			,COMPANY_PLACE
+			,COMPANY_PHONE
+			,COMPANY_EMAIL
+			,REG_NUM
+			,MEMBERS_ENROLL_TIME
+			,MEMBERS_MODIFY_TIME
+			,MEMBERS_STATUS
+		FROM MEMBERS
+		WHERE MEMBERS_ID = #{membersId}
+		AND MEMBERS_PWD = #{membersPwd}
+		AND MEMBERS_STATUS = 'Y'
+  </select>
+  
+  <select id="selectMembers" resultMap="membersResultSet" >
+	  SELECT
+		 MEMBERS_NO
+		,MEMBERS_ID
+		,MEMBERS_PWD
+		,MEMBERS_NAME
+		,MEMBERS_BIRTH
+		,MEMBERS_PHONE
+		,MEMBERS_EMAIL
+		,GENDER
+		,MEMBERS_TYPE
+		,COMPANY_NAME
+		,REPRESENTATATIVE
+		,COMPANY_PLACE
+		,COMPANY_PHONE
+		,COMPANY_EMAIL
+		,REG_NUM
+		,MEMBERS_STATUS
+	FROM MEMBERS
+	WHERE MEMBERS_ID = #{membersId}
+	    AND MEMBERS_STATUS = 'Y'
+  </select>
+  
+  <insert id="insertMembers" parameterType="Members">
+  INSERT INTO MEMBERS
+		(
+			MEMBERS_NO
+			,MEMBERS_ID
+			,MEMBERS_PWD
+			,MEMBERS_NAME
+			,MEMBERS_BIRTH
+			,MEMBERS_PHONE
+			,MEMBERS_EMAIL
+			,GENDER
+		)
+		VALUES
+		(
+			SEQ_MEMID.NEXTVAL,
+			#{membersId},
+			#{membersPwd},
+			#{membersName},
+			#{membersBirth},
+			#{membersPhone},
+			#{membersEmail},
+			#{gender}
+		)
+  </insert>
+  <update id="updateMembers" parameterType="Members">
+ 	UPDATE MEMBERS
+	SET MEMBERS_NAME = #{membersName}
+		, MEMBERS_PHONE = #{membersPhone}
+		, MEMBERS_EMAIL = #{membersEmail}
+		, MEMBERS_BIRTH = #{membersBirth}
+		, MEMBERS_MODIFY_TIME = SYSDATE
+	WHERE MEMBERS_ID = #{membersId}
+  </update>
+  <update id="updatePwdMembers">
+  	UPDATE MEMBERS
+  	SET MEMBERS_PWD = #{updatePwd},
+		MEMBERS_MODIFY_TIME = SYSDATE
+	WHERE MEMBERS_ID = #{userId}
+	 AND MEMBERS_PWD = #{userPwd}
+  </update>
+  <update id="deleteMembers" parameterType="Media">
+  	UPDATE MEMBERS
+	SET MEMBERS_STATUS = 'N'
+		,MEMBERS_MODIFY_TIME = SYSDATE
+	WHERE MEMBERS_ID = #{membersId}
+	  AND MEMBERS_PWD = #{membersPwd}
+  </update>
+  <!-- 프로필 사진 관련 매퍼 -->
+  <insert id="insertProfile" parameterType="Media">
+ 	INSERT
+	INTO MEDIA
+	(
+		MEDIA_ID,
+		MEMBERS_NO,
+		MEDIA_TYPE,
+		ORIGIN_NAME,
+		CHANGE_NAME,
+		FILE_PATH,
+		FILE_LEVEL
+	)
+	VALUES
+	(
+		SEQ_MEDID.NEXTVAL,
+		SEQ_MEMID.CURRVAL,
+		1,
+		#{origin_name},
+		#{change_name},
+		#{filePath},
+		3
+	)
+  </insert>
+  <select id="selectProfile" resultMap="mediaResultSet" parameterType="_int">
+  SELECT
+	  MEDIA_ID,
+	  FILE_PATH || CHANGE_NAME AS "PROFILE",
+  FROM MEDIA
+  WHERE MEMBERS_NO = #{membersNo}
+   AND MEDIA_STATUS = 'Y'
+  </select>
+  <update id="updateProfile" parameterType="Media">
+  UPDATE MEDIA
+	SET ORIGIN_NAME = #{originName},
+		CHANGE_NAME = #{changeName},
+		FILE_PATH = #{filePath}
+	WHERE MEDIA_ID = #{mediaId}
+  </update>
+  <update id="deleteProfile" parameterType="_int">
+ 	UPDATE MEDIA
+	SET MEDIA_STATUS = 'N'
+	WHERE MEDIA_ID = #{mediaId}
+  </update>
+  <!-- 스크랩 관련 매퍼 -->
+   <select id="selectScrapCountProduct" resultType="_int">
+  SELECT COUNT(*)
+	FROM SCRAP
+	WHERE MEMBERS_NO = #{membersNo}
+	AND SCRAP_TYPE = 1 
+	AND SCRAP_STATUS = 'Y'
+  </select>
+  <select id="selectScrapCount2" resultType="_int">
+  SELECT COUNT(*)
+	FROM SCRAP
+	WHERE MEMBERS_NO = #{membersNo}
+	AND SCRAP_TYPE = 2  
+	AND SCRAP_STATUS = 'Y'
+  </select>
+   <select id="selectScrapCount3" resultType="_int">
+  SELECT COUNT(*)
+	FROM SCRAP
+	WHERE MEMBERS_NO = #{membersNo}
+	AND SCRAP_TYPE = 3  
+	AND SCRAP_STATUS = 'Y'
+  </select>
+  <select id="membersScrapCount" resultType="_int">
+  	 SELECT COUNT(*)
+	FROM SCRAP
+	WHERE MEMBERS_NO = #{membersNo}
+	AND SCRAP_STATUS = 'Y'
+  </select>
+  <select id="membersCommunityCount" resultType="_int">
+  SELECT COUNT(*)
+	FROM BOARD
+	WHERE MEMBERS_NO = #{membersNo}
+    AND BOARD_STATUS = 'Y'
+  </select>
+  <select id="memberCommunityList" resultMap="mediaResultSet">
+  	SELECT *
+	FROM MEDIA
+	WHERE BOARD_ID = (SELECT BOARD_ID
+	                    FROM BOARD
+	                    WHERE MEMBERS_NO = #{membersNo})
+	AND MEDIA_TYPE = 1
+	AND FILE_LEVEL = 1
+	AND MEDIA_STATUS = 'Y'
+  </select>
+  <update id="deleteScrap" parameterType="_int">
+  UPDATE SCRAP
+	SET SCRAP_STATUS = 'N"
+	WHERE SCRAP_ID = #{scrapId}
+  </update>
+  <select id="selectScrapList1" resultMap="mediaResultSet" parameterType="_int">
+  SELECT M.FILE_PATH AS "FILE_PATH", M.CHANGE_NAME AS "CHANGE_NAME", M.BOARD_ID AS "BOARD_ID"
+	FROM MEDIA M
+	JOIN SCRAP S ON (M.MEDIA_ID = S.MEDIA_ID)
+	WHERE S.MEMBERS_NO = #{membersNo}
+	AND SCRAP_TYPE = 2
+	AND MEDIA_STATUS = 'Y'
+	AND SCRAP_STATUS = 'Y'
+  </select>
+  <select id="selectScrapList2" resultMap="mediaResultSet" parameterType="_int">
+  SELECT M.FILE_PATH AS "FILE_PATH", M.CHANGE_NAME AS "CHANGE_NAME", M.BOARD_ID AS "BOARD_ID"
+	FROM MEDIA M
+	JOIN SCRAP S ON (M.BOARD_ID = S.BOARD_ID)
+	WHERE S.MEMBERS_NO = #{membersNo}
+    AND S.BOARD_ID = M.BOARD_ID
+	AND SCRAP_TYPE = 3
+    AND FILE_LEVEL = 1
+	AND MEDIA_STATUS = 'Y'
+	AND SCRAP_STATUS = 'Y'
+  </select>
+  <select id="selectScrapList3" resultMap="mediaResultSet" parameterType="_int">
+  SELECT M.FILE_PATH AS "FILE_PATH", M.CHANGE_NAME AS "CHANGE_NAME", M.PRODUCT_ID AS "PRODUCT_ID"
+	FROM MEDIA M
+	JOIN SCRAP S ON (M.PRODUCT_ID = S.PRODUCT_ID)
+	WHERE S.MEMBERS_NO = #{membersNo}
+    AND S.PRODUCT_ID = M.PRODUCT_ID
+	AND SCRAP_TYPE = 1
+    AND FILE_LEVEL = 1
+	AND MEDIA_STATUS = 'Y'
+	AND SCRAP_STATUS = 'Y'
+  </select>
+  <!-- 장바구니 관련 매퍼 -->
+  
+</mapper>

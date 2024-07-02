@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습문제5</title>
+    <style>
+        form{
+            width: 600px;
+            height: 60px;
+            box-sizing: border-box;
+        }
+        legend{
+            text-align: center;
+        }
+        fieldset{
+            box-sizing: border-box;
+            padding: 7px;
+            width: 100%;
+            height: 100%;
+        }
+        fieldset > div{
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        input{
+            margin: 0px;
+        }
+        #form-choice > fieldset{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        #form-search > fieldset{
+            background-color: rgb(184, 179, 179);
+            border: none;
+            display: none;
+        }
+        label{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Practice5</h1>
+    <form action="" id="form-choice">
+        <fieldset>
+            <legend>검색할 항목을 선택하세요</legend>
+            <div id="div-title">
+                <input type="radio" name="radio-choice" id="title" onclick="show(this.id);">
+                <label for="title">제목</label>
+            </div>
+            <div id="div-date">
+                <input type="radio" name="radio-choice" id="date" onclick="show(this.id);">
+                <label for="date">날짜</label> 
+            </div>
+            <div id="div-writer">
+               <input type="radio" name="radio-choice" id="writer" onclick="show(this.id);">
+                <label for="writer">작성자</label> 
+            </div>
+        </fieldset>
+    </form>
+    <br>
+    <form action="" id="form-search">
+        <fieldset>
+            <label for="search-title">검색할 제목을 입력하세요 : </label><br>
+            <input type="text" id="search-title">
+            <button>검색</button>
+        </fieldset>
+        <fieldset>
+            <label for="search-date">검색할 날짜를 선택하세요 : </label><br>
+            <input type="date" id="choice-date"> -
+            <input type="text" id="search-date" placeholder="연도-월-일">
+            <button>검색</button>
+        </fieldset>
+        <fieldset>
+            <label for="search-writer">검색할 작성자 아이디를 입력하세요 : </label><br>
+            <input type="text" id="search-writer">
+            <button>검색</button>
+        </fieldset>
+    </form>
+
+    <script>
+        function show(id){
+            switch(id){
+                case "title":
+                    document.querySelector("#form-search > fieldset:nth-child(2)").style.display = "none";
+                    document.querySelector("#form-search > fieldset:nth-child(3)").style.display = "none";
+                    document.querySelector("#form-search > fieldset:nth-child(1)").style.display = "block";
+                    break;
+                case "date":
+                    document.querySelector("#form-search > fieldset:nth-child(1)").style.display = "none";
+                    document.querySelector("#form-search > fieldset:nth-child(3)").style.display = "none";
+                    document.querySelector("#form-search > fieldset:nth-child(2)").style.display = "block";
+                    break;
+                case "writer":
+                    document.querySelector("#form-search > fieldset:nth-child(1)").style.display = "none";
+                    document.querySelector("#form-search > fieldset:nth-child(2)").style.display = "none";
+                    document.querySelector("#form-search > fieldset:nth-child(3)").style.display = "block";
+            }
+        }
+        
+    </script>
+</body>
+</html>

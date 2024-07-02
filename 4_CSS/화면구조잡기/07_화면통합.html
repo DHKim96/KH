@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹문서구조상세</title>
+    <style>
+        .wrap{
+            width: 1200px;
+            height: 1000px;
+            margin: auto;
+        }
+
+        #header,
+        #footer{
+            height: 20%;
+        }
+
+        #navigator{
+            height: 5%;
+        }
+
+        #content{
+            height: 55%;
+        }
+
+        div,
+        form,
+        input {
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        /* header */
+
+        #header {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        #header_1{
+            width: 20%;
+            height: 100%;
+        }
+
+        #header_2 {
+            width: 70%;
+            position: relative;
+            height: 100%;
+        }
+
+        #header_3{
+            width: 10%;
+            height: 100%;
+        }
+
+        #search_form {
+            margin: auto;
+            width: 60%;
+            height: 20%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /*이 방식으로도 중앙 정렬 가능 단, 플렉스가 더 편함*/
+            /* 사방이 다 극단으로 가려함에 따라 결국 가운데로 모임 */
+        }
+
+        #search_form>input {
+            height: 100%;
+            float: left;
+        }
+
+        #search_form>input:nth-child(1) {
+            width: 90%;
+        }
+
+        #search_form>input:nth-child(2) {
+            width: 10%;
+        }
+
+
+        #navigator {
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        #navigator ul,
+        li,
+        ol {
+            list-style-type: none;
+            padding: 0px;
+        }
+
+        #navi {
+            height: 100%;
+            width: 900px;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #navi>li {
+            float: left;
+            border: 1px solid white;
+            width: 15%;
+            text-align: center;
+        }
+
+        #navi>li>ul {
+            display: none;
+        }
+
+        #navi>li>ul a {
+            font-size: 14px;
+        }
+
+        #navi>li>a:hover+ul {
+            display: block;
+        }
+
+        #navi>li>ul:hover {
+            display: block;
+        }
+
+        #navi a {
+            font-size: 18px;
+            font-weight: 900;
+            width: 100%;
+            height: 40px;
+            display: block;
+            /* vertical-align: middle;  블럭일 때는 안됨*/
+            line-height: 35px;
+            /* 글자의 높낮이를 조절. 글자 크기는 그대로 */
+        }
+
+        #navi a:hover {
+            color: gray;
+            scale: 1.08;
+        }
+
+
+
+        /* content */
+        #content {
+            min-height: 600px;
+            height: max-content;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        #content_3 {
+            width: 300px;
+            height: 600px;
+
+        }
+
+        #login_form {
+            width: 100%;
+            height: 15%;
+        }
+
+        #login_form>* {
+            width: 100%;
+        }
+
+        #login_form_input {
+            height: 80%;
+        }
+
+        #login_form_input>* {
+            height: 100%;
+            float: left;
+        }
+
+        #login_input_id_pwd {
+            width: 75%;
+        }
+
+        #login_input_id_pwd>input {
+            width: 100%;
+            height: 50%;
+        }
+
+        #login_input_button>input {
+            width: 100%;
+            height: 100%;
+        }
+
+        #login_input_button {
+            width: 25%;
+        }
+
+        #login_form_etc {
+            height: 20%;
+            text-align: center;
+        }
+
+        #login_form_etc>a {
+            text-decoration: none;
+            color: black;
+            font-size: 12px;
+            margin: 10px;
+            vertical-align: middle;
+        }
+
+        /* footer */
+        #footer {
+            width: 100%;
+            height: 260px;
+            max-width: 1130px;
+        }
+
+        #footer>div {
+            width: 100%;
+        }
+
+        #footer_1 {
+            height: 55px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #footer_2 {
+            height: 205px;
+        }
+
+        #footer_1>a {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        #footer_2>p {
+            width: 100%;
+            font-size: 12px;
+        }
+
+        #footer_2>p:nth-child(1) {
+            font-size: 14px;
+        }
+
+        #footer_2>p:nth-child(3) {
+            font-size: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div id="header">
+            <div id="header_1"></div>
+            <div id="header_2">
+                <form action="" id="search_form">
+                    <input type="text" name="keyword">
+                    <input type="submit" value="검색">
+                </form>
+            </div>
+            <div id="header_3"></div>
+        </div>
+        <div id="navigator">
+            <ul id="navi">
+                <li><a href="">Java</a></li>
+                <li><a href="">Oracle</a></li>
+                <li>
+                    <a href="">Front-end</a>
+                    <ul>
+                        <li><a href="">HTML</a></li>
+                        <li><a href="">CSS</a></li>
+                        <li><a href="">JavaScript</a></li>
+                        <li><a href="">jQuery</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">Server</a>
+                    <ul>
+                        <li><a href="">JDBC</a></li>
+                        <li><a href="">Servlet</a></li>
+                        <li><a href="">JSP</a></li>
+                        <li><a href="">AJAX</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Framework</a></li>
+            </ul>
+        </div>
+        <div id="content">
+            <div id="content_1"></div>
+            <div id="content_2"></div>
+            <div id="content_3">
+                <!--로그인폼 전체를 감싸는 div-->
+                <div id="login_form">
+                    <!--입력받아 요청할 수 있는 form태그 사용-->
+                    <form action="" id="login_form_input">
+                        <!--id와 pwd 텍스트 상자가 들어갈 div-->
+                        <div id="login_input_id_pwd">
+                            <input type="text" name="userId" placeholder="아이디를 입력해주세요">
+                            <input type="password" name="userPwd" placeholder="비밀번호를 입력해주세요">
+                        </div>
+                        <!--로그인 버튼이 들어갈 div-->
+                        <div id="login_input_button">
+                            <input type="submit" value="로그인">
+                        </div>
+                    </form>
+                    <div id="login_form_etc">
+                        <a href="">회원가입</a>
+                        <a href="">ID/PWD 찾기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div id="footer_1">
+                <a href="">이용약관</a> |
+                <a href="">개인정보처리방침</a> |
+                <a href="">인재채용</a> |
+                <a href="">훈련비 게시</a> |
+                <a href="">강사구인</a> |
+            </div>
+            <div id="footer_2">
+                <p>KH정보교육원 ｜ 사업자등록번호 : 487-86-00763 ｜ 사업자등록번호 : 851-87-00622 ｜ 서울 강남 제2014-01호 ｜ 대표자 : 양진선 ｜ 책임자 : 최홍석 ｜
+                    개인정보관리책임자 : 양진선</p>
+                <p>
+                    강남지원 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F <br>
+                    강남지원 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F, 5F, 7F <br>
+                    강남지원 3관 : 서울특별시 강남구 테헤란로 130 호산빌딩 5F, 6F <br>
+                    종로지원 : 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 2F, 3F <br>
+                    당산지원 : 서울특별시 영등포구 선유동2로 57 이레빌딩(구관) 19F, 20F
+                </p>
+                <p>Copyright © 1998-2024 KH Information Educational Institute All Right Reserved</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

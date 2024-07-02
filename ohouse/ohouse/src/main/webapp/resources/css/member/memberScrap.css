@@ -1,0 +1,96 @@
+.content {
+    width: 1136px;
+    padding-bottom: 300px;
+}
+
+#scrap-profile-area>img {
+    width: 100px;
+    border-radius: 50px;
+}
+
+#scrap-nav>button {
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+    background: none;
+    border: 0;
+}
+
+#scrap-nav>button:hover {
+    color: #35C5F0;
+    border-bottom: 3px solid #35C5F0;
+}
+
+.clicked {
+    color: #35C5F0;
+    border-bottom: 3px solid #35C5F0;
+}
+
+#scrap-nav~hr {
+    margin: 0px 0px 20px 0px;
+    border: 1px solid #F7F9FA;
+}
+
+#scrap-nav {
+    margin-bottom: 30px;
+}
+
+#scrap-item {
+    margin-bottom: 50px;
+
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.profile-content-img{
+    width: 260px;
+    height:200px;
+    
+}
+
+.profile-community-img{
+    width: 260px;
+    height:200px;
+    object-fit: cover;
+}
+
+.scrap-item-img>button {
+    position: absolute;
+    background: none;
+    border: none;
+    right: 0px;
+    bottom: 5px;
+
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.scrap-item-img>button:hover {
+    opacity: 1;
+}
+
+.scrap-item-img {
+    border-radius: 5px;
+    width: 260px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.scrap-item img {
+    border-radius: 5px;
+    -webkit-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    -o-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+    -ms-transition: all 0.1s ease;
+}
+
+.scrap-item img:hover {
+    -webkit-transform: scale(1.1, 1.1);
+    -moz-transform: scale(1.1, 1.1);
+    -o-transform: scale(1.1, 1.1);
+    -ms-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1);
+}

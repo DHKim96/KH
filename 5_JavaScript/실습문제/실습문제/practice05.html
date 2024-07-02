@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice5</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        form {
+            width: 500px;
+        }
+
+        .select {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .search {
+            background-color: lightgray;
+            padding: 10px;
+            width: 500px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #search-title {
+            width: 400px;
+            margin-right: 15px;
+        }
+
+        .date {
+            width: 150px;
+        }
+
+        .date~button {
+            margin-left: 15px;
+        }
+
+        #search-id {
+            width: 200px;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Practice5</h1>
+    <form action="">
+        <fieldset>
+            <legend align="center">
+                검색할 항목을 선택하세요.
+            </legend>
+            <div class="select">
+                <span>
+                    <input type="radio" name="radio" id="title" onclick="appear()">
+                    <label for="title">제목</label>
+                </span>
+                <span>
+                    <input type="radio" name="radio" id="date" onclick="appear()">
+                    <label for="date">날짜</label>
+                </span>
+                <span>
+                    <input type="radio" name="radio" id="writer" onclick="appear()">
+                    <label for="writer">작성자</label>
+                </span>
+            </div>
+        </fieldset>
+    </form>
+    <br>
+    <div class="search hidden">
+        검색할 제목을 입력하세요 : <br>
+        <input type="text" id="search-title">
+        <button onclick="search()">검색</button>
+    </div>
+    <div class="search hidden">
+        검색할 날짜를 선택하세요 : <br>
+        <input type="date" class="date" id="start"> -
+        <input type="date" class="date" id="end">
+        <button onclick="search()">검색</button>
+    </div>
+    <div class="search hidden">
+        검색할 작성자 아이디를 입력하세요 : <br>
+        <input type="text" id="search-id">
+        <button onclick="search()">검색</button>
+    </div>
+    <script>
+        function appear() {
+            const radioArr = document.getElementsByName("radio");
+            const searchArr = document.getElementsByClassName("search");
+
+            for(let ele of searchArr) {
+                if(ele.classList.contains("hidden")) {
+                    continue;
+                } else {
+                    ele.classList.add("hidden")
+                    break;
+                }
+            }
+
+            let idx = 0;
+            for(let i in radioArr) {
+                if(radioArr[i].checked) {
+                    idx = i;
+                    break;
+                }
+            }
+
+            searchArr[idx].classList.remove("hidden");
+        }
+        function search() {
+            
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        .area{
+            border: 1px solid black;
+            height: 300px;
+        }
+        .qa_box > div{
+            background: beige;
+            border: 1px solid lavenderblush;
+            width: 300px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+
+        .qa_box > p{
+            display: none; 
+            border: 1px solid whitesmoke;
+            width: 300px;
+            height: 100px;
+            border-radius: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>jQuery</h1>
+
+    <h3>jQuery이벤트</h3>
+    <div class="area" id="wrap">
+        <h6>클릭시 h6요소추가</h6>
+    </div>
+
+    <script>
+        //방법1 이벤트 메소드 => 동적으로 만들어진 요소에 이벤트 적용 안됨
+        // $("#wrap > h6").click(function(){
+        //     $("#wrap").append("<h6>클릭시 생성된 h6</h6>");
+        // })
+
+        //방법2 on메소드
+        // $("#wrap > h6").on("click", function(){
+        //     $("#wrap").append("<h6>클릭시 생성된 h6</h6>");
+        // })
+
+        //방법3 $("부모요소").on(이벤트명, 자식요소, 실행할함수)
+        $("#wrap").on("click", "h6", function(){
+            $("#wrap").append("<h6>클릭시 생성된 h6</h6>");
+        })
+    </script>
+
+    <hr>
+    <h2>시각적인 효과(Effect 메소드)</h2>
+    <p>페이지 내에 애니메이션 효과를 주기위해 사용되는 메소드</p>
+
+    <h3>* show, hide, toggle</h3>
+    <p>선택된 요소가 점점 커지면서 보여지고, 점점작아지면서 사라지게 만드는 메소드</p>
+
+    <button id="show_btn">보여주기</button>
+    <button id="hide_btn">숨기기</button>
+    <button id="toggle_btn">토글</button>
+    <br><br>
+    <img id="hedeAndShowImg" src="https://img.img-taboola.com/taboola/image/fetch/f_jpg%2Cq_auto%2Ch_157%2Cw_300%2Cc_fill%2Cg_faces:auto%2Ce_sharpen/http%3A%2F%2Fcdn.taboola.com%2Flibtrc%2Fstatic%2Fthumbnails%2F22d7557c62ee249834aff773f165abce.jpg" alt="임시이미지">
+
+    <script>
+        $("#show_btn").click(function(){
+            $("#hedeAndShowImg").show(500);
+        })
+
+        $("#hide_btn").click(function(){
+            $("#hedeAndShowImg").hide(500);
+        })
+
+        $("#toggle_btn").click(function(){
+            $("#hedeAndShowImg").toggle(500);
+        })
+    </script>
+
+    <h3>fadeIn, fadeOut, fadeToggle</h3>
+    <p>선택된 요소가 점점 투명해지면서 사라지거나 보여지게하는 메소드</p>
+
+    <button id="fadein_btn">보여주기</button>
+    <button id="fadeout_btn">숨기기</button>
+    <button id="fadetoggle_btn">토글</button>
+    <br><br>
+    <img id="fadeImg" src="https://img.img-taboola.com/taboola/image/fetch/f_jpg%2Cq_auto%2Ch_157%2Cw_300%2Cc_fill%2Cg_faces:auto%2Ce_sharpen/http%3A%2F%2Fcdn.taboola.com%2Flibtrc%2Fstatic%2Fthumbnails%2F22d7557c62ee249834aff773f165abce.jpg" alt="임시이미지">
+
+    <script>
+        $("#fadein_btn").click(function(){
+            $("#fadeImg").fadeIn(1000);
+        })
+        $("#fadeout_btn").click(function(){
+            $("#fadeImg").fadeOut(1000);
+        })
+        $("#fadetoggle_btn").click(function(){
+            $("#fadeImg").fadeToggle(1000);
+        })
+    </script>
+
+    <h3>* slideDown()과 sildeUp()</h3>
+    <div class="qa_box">
+        <div>Q. 반품은 언제되나요?</div>
+        <p>A. 택배사의 사정에따라 2~3일 소요됩니다.</p>
+
+        <div>Q. 반품은 언제되나요?</div>
+        <p>A. 택배사의 사정에따라 2~3일 소요됩니다.</p>
+
+        <div>Q. 반품은 언제되나요?</div>
+        <p>A. 택배사의 사정에따라 2~3일 소요됩니다.</p>
+
+        <div>Q. 반품은 언제되나요?</div>
+        <p>A. 택배사의 사정에따라 2~3일 소요됩니다.</p>
+
+        <div>Q. 판매자가 연락이 되지 않습니다.</div>
+        <p>A. 문의량이 많아 지금은 연결이 어렵습니다.</p>
+    </div>
+    <script>
+        $(".qa_box > div").click(function(){
+            //this => 클릭이벤트가 발생한 요소(div)
+            //$(this).next() => 선택된 요소의 뒤에있는 요소(p)
+            let tmp;
+            
+            const $p = $(this).next();
+            
+            if($p.css("display") === "none") {
+                $(".qa_box > p").slideUp();
+
+                $p.slideDown();
+            } else { //보여지고있는 상태
+                $p.slideUp();
+            }
+        })
+    </script>
+</body>
+</html>

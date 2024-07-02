@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>텍스트관련스타일</title>
+    <style>
+        #c{
+            color: red;
+            color: #5f1b1b;
+            color: rgb(0, 0, 0); /*각 값의 최대는 255*/
+            color: rgba(0, 0, 0, 0.2); /*각 값의 최대는 255*/
+        }
+        #td1{text-decoration: underline;}
+        #td2{text-decoration: line-through;}
+        #td3{text-decoration: overline;}
+
+    </style>
+</head>
+<body>
+    <h1>텍스트 관련 스타일(text~)</h1>
+
+    <h2>color : 텍스트 색상을 지정</h2>
+    <pre id="c">
+        선택자{
+            color: 색상명 | 16진수 | rgb(x,x,X) | rgba(x,x,x,x)
+        }
+    </pre>
+
+    <h2>text-decoration: 텍스트에 줄을 긋거나 줄을 없앨 때 사용</h2>
+    <pre>
+        선택자{
+            text-decoration: none | underline | overline | line-through;
+        }
+    </pre>
+    <ul>
+        <li id="td1">텍스트 영역 아래 줄 긋기</li>
+        <li id="td2">텍스트 영역 중간에 줄 긋기</li>
+        <li id="td3">텍스트 영역 위에 줄 긋기</li>
+    </ul>
+
+    <a href="http://www.naver.com" target="_blank" style="text-decoration: none;">네이버로</a>
+
+    <hr>
+
+    <h3>text-align : 텍스트 정렬할 때 사용</h3>
+    <pre>
+        선택자{
+            text-align: left(기본값) | right | center | justify
+        }
+    </pre>
+
+    <h4>왼쪽정렬(기본값)</h4>
+    <p style="text-align: left;">우리나라 경상수지가 9개월 연속 흑자를 기록했다. 여행수지 등 서비스수지는 21개월째 적자 행진을 이어갔지만, 반도체 수출이 큰 폭으로 증가한 결과 상품수지 흑자가 이를 상쇄했다.</p>
+
+    <h4>양쪽정렬</h4>
+    <p style="text-align: justify;">우리나라 경상수지가 9개월 연속 흑자를 기록했다. 여행수지 등 서비스수지는 21개월째 적자 행진을 이어갔지만, 반도체 수출이 큰 폭으로 증가한 결과 상품수지 흑자가 이를 상쇄했다.</p>
+
+    <h4>중앙정렬</h4>
+    <p style="text-align: center;">우리나라 경상수지가 9개월 연속 흑자를 기록했다. 여행수지 등 서비스수지는 21개월째 적자 행진을 이어갔지만, 반도체 수출이 큰 폭으로 증가한 결과 상품수지 흑자가 이를 상쇄했다.</p>
+
+    <h4>오른쪽정렬</h4>
+    <p style="text-align: right;">우리나라 경상수지가 9개월 연속 흑자를 기록했다. 여행수지 등 서비스수지는 21개월째 적자 행진을 이어갔지만, 반도체 수출이 큰 폭으로 증가한 결과 상품수지 흑자가 이를 상쇄했다.</p>
+
+    <hr>
+
+    <h3>line-height : 줄 간격 조절할 때 사용</h3>
+    <pre>
+        선택자{
+            line-height: normal | px | em | %
+        }
+    </pre>
+
+    <h4>px 고정 단위 간격</h4>
+    <p style="line-height: 30px;">우리나라 경상수지가 9개월 연속 흑자를 기록했다. 여행수지 등 서비스수지는 21개월째 적자 행진을 이어갔지만, 반도체 수출이 큰 폭으로 증가한 결과 상품수지 흑자가 이를 상쇄했다.</p>
+
+</body>
+</html>

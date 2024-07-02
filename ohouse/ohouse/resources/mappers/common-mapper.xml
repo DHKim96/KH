@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="commonMapper">
+  	<resultMap id="productResultSet" type="Product">
+  		<result column="PRODUCT_ID" property="productId" />
+  		<result column="PRODUCT_NAME" property="productName" />
+  		<result column="PRODUCT_PRICE" property="productPrice" />
+  		<result column="PRODUCT_SALES" property="productSales" />
+  		<result column="STOCK" property="stock" />
+  		<result column="DELIVERY_DATE" property="arrivalDate" />
+  		<result column="SALE" property="sale" />
+  		<result column="PRODUCT_CONTENT" property="productContent" />
+  		<result column="PRODUCT_CREATE_TIME" property="productCreateTime" />
+  		<result column="PRODUCT_MODIFY_TIME" property="productModifyTime" />
+  		<result column="COMPANY_NAME" property="companyName" />
+  		<result column="PRODUCT_DELIVERY_PRICE" property="productDeliveryPrice" />
+  		<result column="PRODUCT_CATEGORY" property="productCategory" />
+  		<result column="PRODUCT_STATUS" property="productStatus" />
+  		<result column="REVIEW_COUNT" property="reviewCount" />
+  		<result column="RATING_AVG" property="ratingAvg" />
+  		<result column="PRODUCT_THUMBNAIL" property="productThumbnail" />
+  		<result column="MEMBERS_NO" property="membersNo" />
+  	</resultMap>
+  	  	<resultMap type="Board" id="boardResultSet">
+  		<result column="BOARD_ID" property="boardId"/>
+  		<result column="BOARD_TITLE" property="boardTitle"/>
+  		<result column="BOARD_VIEWS" property="boardViews"/>
+  		<result column="MEMBERS_NO" property="membersNo"/>
+  		<result column="BOARD_WRITER" property="boardWriter"/>
+  		<result column="BOARD_THUMBNAIL" property="boardThumbnail"/>
+  		<result column="BOARD_CREATE_TIME" property="boardCreateTime"/>
+  		<result column="BOARD_MODIFY_TIME" property="boardModifyTime"/>
+  		<result column="BOARD_INTRODUCTION" property="introduction"/>
+  		<result column="BOARD_DESCRIPTION" property="description"/>
+  		<result column="FILTER_TYPE" property="filType"/>
+  		<result column="FILTER_AREA" property="filArea"/>
+  		<result column="FILTER_NUM" property="filNum"/>
+  		<result column="FILTER_DIRECTION" property="filDirection"/>
+  		<result column="FILTER_PAST" property="filPast"/>
+  		<result column="FILTER_LOCAL" property="filLocal"/>
+  		<result column="FILTER_FAMILY" property="filFamily"/>
+  		<result column="FILTER_PET" property="filPet"/>
+  		<result column="FILTER_FAMILY_MEM_CNT" property="filFamMemCnt"/>
+  		<result column="FILTER_FIELD" property="filField"/>
+  		<result column="FILTER_WORKER" property="filWorker"/>
+  		<result column="FILTER_RANGE" property="filRange"/>
+  		<result column="FILTER_PERIOD" property="filPeriod"/>
+  		<result column="FILTER_PERIOD_TYPE" property="filPeriodType"/>
+  		<result column="FILTER_CONSTRUCTION_PRICE" property="filConPrice"/>
+  		<result column="FILTER_STYLE_PRICE" property="filStPrice"/>
+  		<result column="FILTER_URL" property="filUrl"/>
+  		<result column="FILTER_COPYRIGHT" property="filCopy"/>
+  		<result column="BOARD_STATUS" property="boardStatus"/>
+  		<result column="SCRAP_COUNT" property="scrapCount"/>
+  	</resultMap>
+  	<resultMap id="mediaResultSet" type="Media">
+  		<result column="MEDIA_ID" property="mediaId"/>
+  		<result column="PRODUCT_ID" property="mediaProductId"/>
+  		<result column="BOARD_ID" property="mediaBoardId"/>
+  		<result column="MEDIA_TYPE" property="mediaType"/>
+  		<result column="ORIGIN_NAME" property="originName"/>
+  		<result column="CHANGE_NAME" property="changeName"/>
+  		<result column="FILE_PATH" property="filePath"/>
+  		<result column="FILE_LEVEL" property="fileLevel"/>
+  		<result column="UPLOAD_DATE" property="uploadDate"/>
+  		<result column="MEDIA_STATUS" property="mediaStatus"/>
+  	</resultMap>
+  	<resultMap id="scrapResultSet" type="Scrap">
+  		<result column="SCRAP_ID" property="scrapId"/>
+  		<result column="SCRAP_TYPE" property="scrapType"/>
+  		<result column="PRODUCT_ID" property="scrapProductId"/>
+  		<result column="BOARD_ID" property="scrapBoardId"/>
+  		<result column="MEMBERS_NO" property="scrapMembersNo"/>
+  		<result column="SCRAP_CREATE_TIME" property="scrapCreateTime"/>
+  		<result column="SCRAP_STATUS" property="scrapStatus"/>
+  	</resultMap>
+  	<!-- 검색된 상품 판매량 내림차순 -->
+  	<select id="searchProductList" resultMap="productResultSet">
+	   <![CDATA[
+        SELECT *
+        FROM (
+            SELECT
+                P.PRODUCT_ID,
+                PRODUCT_NAME,
+                PRODUCT_PRICE,
+                SALE,
+                FILE_PATH || CHANGE_NAME AS PRODUCT_THUMBNAIL,
+                COMPANY_NAME,
+                (
+                    SELECT COUNT(*)
+                    FROM REVIEW R
+                    WHERE R.PRODUCT_ID = P.PRODUCT_ID
+                ) AS REVIEW_COUNT,
+                (
+                    SELECT AVG(RATING)
+                    FROM REVIEW R
+                    WHERE R.PRODUCT_ID = P.PRODUCT_ID
+                ) AS RATING_AVG
+            FROM PRODUCT P
+            JOIN MEDIA MED ON (P.PRODUCT_ID = MED.PRODUCT_ID)
+            JOIN MEMBERS MEM ON (P.MEMBERS_NO = MEM.MEMBERS_NO)
+            WHERE PRODUCT_STATUS = 'Y'
+                      AND FILE_LEVEL = 1
+                      AND PRODUCT_NAME LIKE '%${keyword}%'
+            ORDER BY PRODUCT_SALES DESC
+        )
+        WHERE ROWNUM <= 4
+    ]]>
+  </select>
+  <!-- 검색된 상품 갯수 -->
+  <select id="searchProductListCount" resultType="_int">
+  	SELECT COUNT(*)
+  	FROM PRODUCT
+  	WHERE PRODUCT_NAME LIKE '%${keyword}%'
+  </select>
+  <!-- 검색된 집들이 게시글 조회수 내림차순 -->
+  <select id="searchBoardList" resultMap="boardResultSet">
+   <![CDATA[
+        SELECT *
+        FROM (
+			SELECT
+				B.BOARD_ID AS "BOARD_ID",
+				B.MEMBERS_NO AS "MEMBERS_NO",
+				BOARD_TITLE,
+				BOARD_VIEWS,
+				FILE_PATH || CHANGE_NAME AS "BOARD_THUMBNAIL",
+				MEMBERS_ID AS "BOARD_WRITER",
+				(
+		         SELECT COUNT(*)
+				 FROM SCRAP S
+				 WHERE S.BOARD_ID = B.BOARD_ID
+		              ) AS "SCRAP_COUNT"
+			FROM BOARD B
+			JOIN MEDIA MED ON (B.BOARD_ID = MED.BOARD_ID)
+			JOIN MEMBERS MEM ON (B.MEMBERS_NO = MEM.MEMBERS_NO)
+			WHERE BOARD_STATUS = 'Y'
+			  AND FILE_LEVEL = 1
+			  AND BOARD_TITLE LIKE '%${keyword}%'
+		    ORDER BY BOARD_VIEWS DESC
+     		)
+        WHERE ROWNUM <= 3
+     ]]>
+  	</select>
+  	<!-- 검색된 게시글 갯수 -->
+  <select id="searchBoardListCount" resultType="_int">
+  	SELECT COUNT(*)
+  	FROM BOARD
+  	WHERE BOARD_TITLE LIKE '%${keyword}%'
+  </select>
+  </mapper>

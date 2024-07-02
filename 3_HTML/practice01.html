@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .area{
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Pratice2</h1>
+    <form>
+        <fieldset>
+            <legend>취미</legend>
+            <table>
+                <tr>
+                    <td>
+                        <label>
+                            <input type="checkbox" id="all-hobby-check-box" onclick="allCheck()">
+                            전체선택
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="hobby" value="종합">
+                            종합
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="hobby" value="소설">
+                            소설
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="hobby" value="시/에세이">
+                            시/에세이
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="hobby" value="경제/경영">
+                            경제/경영
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="hobby" value="자기계발">
+                            자기계발
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="hobby" value="아동">
+                            아동
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="hobby" value="여행">
+                            여행
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="hobby" value="과학">
+                            과학
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="hobby" value="역사/문화">
+                            역사/문화
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="hobby" value="외국어">
+                            외국어
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="hobby" value="컴퓨터">
+                            컴퓨터
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="hobby" value="만화">
+                            만화
+                        </label>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+
+    <button onclick="wrightHobbyList()">카테고리 선택</button>
+    <div class="area" id="area1"></div>
+
+    <script>
+        // name이 hobby인 체크박스중 체크된 모든 박스의 값을 area1에 표시하기
+        function wrightHobbyList(){
+            const area = document.getElementById('area1');
+
+            const hobbyCheckBoxList = document.getElementsByName('hobby');
+
+            let str = "";
+            for (let box of hobbyCheckBoxList) { // 모든 체크박스 반복
+                if (box.checked)  {//체크박스 체크여부확인
+                    str += box.value + " ";
+                }
+            }
+
+            area.innerHTML = str;
+        }
+
+        //호출시 전체선택체크박스에 따라서 모든 name이 hobby인 체크박스 체크 또는 해제
+        function allCheck(){
+            //전체선택 체크박스의 값
+            let checked = document.getElementById('all-hobby-check-box').checked;
+
+            //name이 hobby인 모든 체크박스가 담긴 배열
+            const hobbyCheckBoxList = document.getElementsByName('hobby');
+
+            //모든 checkbox순회하며 checked변경
+            for (let box of hobbyCheckBoxList) {
+                box.checked = checked;
+            }
+
+        }
+
+        //모든체크박스가 체크되어있는지 확인
+        //모든 체크박스가 체크되어있다면 true/ 아니면 false
+        function isAllHobbyChecked(){
+            //name이 hobby인 모든 체크박스가 담긴 배열
+            const hobbyCheckBoxList = document.getElementsByName('hobby');
+            for (let box of hobbyCheckBoxList) {
+                if (!box.checked) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        //체크박스가 클릭될때마다 모든체크박스가 체크되어있는지 확인
+        //체크박스가 모두 클릭되어있다면 전체선택을 체크 아니라면 해제
+
+        //name이 hobby인 모든 체크박스가 담긴 배열
+        const hobbyCheckBoxList = document.getElementsByName('hobby');
+        for (let box of hobbyCheckBoxList) {
+            box.onclick = function(){
+                const allCheckBox = document.getElementById('all-hobby-check-box');
+                allCheckBox.checked = isAllHobbyChecked();   
+            }
+        }
+
+    </script>
+</body>
+
+</html>

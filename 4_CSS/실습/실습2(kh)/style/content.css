@@ -1,0 +1,142 @@
+main{
+    width: 100%;
+    height: 500px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content>.top-section{
+    width: 100%;
+    height: 25%;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.content-advertise{
+    width: 65%;
+    height: 100%;
+    border: 1px solid #c3c3c3;
+    margin-right: 10px;
+}
+
+.content-advertise>img{
+    width: 100%;
+}
+
+.login-form{
+    width: 35%;
+    height: 100%;
+    border: 1px solid #c3c3c3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form-input{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 70%;
+    margin-bottom: 5px;
+}
+
+.login-form input{
+    padding: 0px;
+}
+
+.login-form-input-id_pwd{
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    float: left;
+    margin-right: 2px;
+}
+
+.login-form-input-id_pwd>input{
+    width: 100%;
+    height: 100%;
+}
+
+.login-form-input-button{
+    height: 100%;
+    width: 30%;
+}
+
+.login-form-input-button>input{
+    height: 100%;
+    width: 100%;
+}
+
+.login-form-etc>a{
+    text-decoration: none;
+    color: black;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.content>.bottom-section{
+    width: 100%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+}
+
+.content-bottom-left-section{
+    width: 65%;
+    height: 100%;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-bottom-left-top-section{
+    width: 100%;
+    height: 20%;
+    border: 1px solid #c3c3c3;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+.announcement-category>a{
+    text-decoration: none;
+    color: black;
+    padding: 3px;
+}
+
+.content-bottom-left-bottom-section{
+    width: 100%;
+    height: 80%;
+    border: 1px solid #c3c3c3;
+}
+
+.content-bottom-left-bottom-section>img{
+    width: 100%;
+}
+
+.content-bottom-right-section{
+    width: 35%;
+    height: 100%;
+    border: 1px solid #c3c3c3;
+    display: flex;
+    justify-content: center;
+}
+
+.content-bottom-right-section>img{
+    width: 80%;
+    height: 100%;
+}
+

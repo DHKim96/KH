@@ -1,0 +1,99 @@
+#mySetting-content {
+    width: 300px;
+    min-height: 800px;
+    padding: 20px 0px;
+}
+
+#mySetting-content h3 {
+    color: #828C94;
+    font-weight: 500;
+    font-size: 14px;
+    margin: 10px 0px;
+}
+
+#mySetting-img-area>img {
+    width: 86px;
+    height: 86px;
+    overflow: hidden;
+    border-radius: 50px;
+}
+
+.mySetting-input {
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    color: #828C94;
+    outline-color: #35C5F0;
+    border-radius: 5px;
+    border: 1px solid #828C94;
+    padding: 5px;
+}
+
+.mySetting-msg {
+    height: 20px;
+}
+
+.mySetting-hidden {
+    display: none;
+}
+
+#mySetting-content-area>hr {
+    margin: 20px 0px;
+}
+
+#mySetting-radio {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+#mySetting-content input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 17px;
+    height: 17px;
+    border: 1px solid #828C94;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+}
+
+#mySetting-content input[type="radio"]~label {
+    font-size: 17px;
+    margin-bottom: 0;
+}
+
+#mySetting-content input[type="radio"]:checked {
+    background-color: white;
+    border: 5px solid #35C5F0;
+}
+
+#pwd-change {
+    background: white;
+    color: #828C94;
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid #828C94;
+    cursor: pointer;
+}
+
+#setting-submit {
+    background: #35C5F0;
+    color: white;
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+label {
+    margin-top: 5px;
+    color: #828C94;
+    cursor: pointer;
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>변수와 자료형</h1>
+    <h2 id="description">변수 선언시 var뿐만 아니라 let, const 이용해서 선언 가능</h2>
+    <!--버전차이, 단점이 있어서 보완하기 위해 등장-->
+
+    <script>
+        var tmp1;
+        let tmp2;
+        const tmp3 = "jiwon";
+
+        var name = "최지원";
+        console.log(name);
+
+        var age = 45;
+        var pi = 3.14;
+        var age = 50;
+
+        /**
+         * let은 var에서는 가능한, 같은 이름의 중복 생성을 방지하는 자료형
+         * 다만 let과 var는 모두 값을 변경하는 것은 가능
+         * 
+         * let name = "최지원";
+         * ...
+         * let name = ~ 은 불가
+         * name = ~ 은 가능
+         * 
+        */
+
+        /*
+        * const
+            :상수를 표현하기 위한 자료형.
+             값을 변경할 수 없음.
+             const name3 = "김수민";
+             name3 = "지원"; => 불가
+        */
+
+        /*
+        * Naming
+            : 일반적으로 영어 사용. 문자와 숫자 모두 사용 가능
+              특수문자 중에서는 '$', '_' 사용 가능.
+              숫자로 변수명 시작 불가.
+              키워드는 변수명으로 사용 불가(ex. var, let, const, document 등)
+        * Naming Type
+            1) camelCase
+            2) snake_case : '_'로 이어줌. 파이썬에서 주로 사용. 단어의 시작마다 _로 구분
+            
+        */
+
+    </script>
+
+    <h3>* 자료형</h3>
+    <p>
+        변수 선언 시 자료형을 별도로 지정하지 않음(자료형의 개념이 없다는 의미는 아님)
+        => 한 줄씩 실행되는 인터프리터 언어 특성상 변수에 대입되는 값에 따라 묵시적으로 자료형 결정
+    </p>
+
+    <h4> 자바스크립트 자료형</h4>
+    <ul>
+        <li>Number(숫자)</li>
+        <li>String(문자열)</li>
+        <li>Boolean(참/거짓)</li>
+        <li>undefined(변수의 자료형이 정해지지 않으며 값도 정해지지 않음)</li>
+        <li>null(자료형이 정해진 상태이나 값이 정해지지 않음)</li>
+        <li>symbol</li>
+        <li>object(객체 타입)</li>
+        <!-- Function, Array, Object -->
+    </ul>
+    <button onclick="typeTest();">자료형테스트</button>
+    <script>
+        function typeTest(){
+            const age = 55;
+            const temperature = -10;
+            const pi = 3.141592;
+
+            console.log(typeof age);
+            console.log(typeof temperature);
+            console.log(typeof pi);
+
+            const infinity = Infinity;
+            const nInfinity = -Infinity;
+
+            console.log(typeof infinity);
+            console.log(infinity);
+            console.log(typeof nInfinity);
+            console.log(nInfinity);
+
+            // String
+            /*
+            * 1) newline => \n
+            * 2) tab => \t
+            * 3) \ => \\
+            */
+
+            const str = "안녕하세요 저는 최지원입니다. \n \t나이는 70세 입니다.";
+            console.log(str);
+
+            const name = "최지원";
+            console.log("안녕하세요" + name + "입니다.");
+            console.log(`안녕하세요 ${name}입니다.`); //'`'넣으면 ${} 통해서 중간에 변수 넣을 수 있음
+
+            //Boolean 
+            const isTrue = true;
+            const isFalse = false;
+            console.log(typeof isTrue);
+            console.log(typeof isFalse);
+
+            if(isTrue){
+
+            }
+
+            if(name){
+
+            } // name 이 있기만하면 참 / null값이면 거짓 과 같은 용도로도 사용 가능
+        
+            //undefined
+            /*
+                개발자가 직접 값을 초기화하지 않았을 때 지정되는 값.
+                따라서 undefined를 명시하는 행위는 지양할 것.
+            */
+
+            let num;
+            console.log(num);
+            console.log(typeof num);
+
+            /*
+            null
+                : undefined와 마찬가지로 값이 없음을 의미
+                  다만 js에서는 개발자가 명시적으로 없는 값을 초기화할 때 사용    
+            */
+
+            let init = null;
+            console.log(init);
+            console.log(typeof init);
+
+            /*
+            symbol
+                : 유일무이한 값 생성 시 타 원시값들과는 달리 symbol 함수 호출하여 사용
+            */
+           const tmp1 = '1';
+           const tmp2 = '1';
+           console.log(tmp1 == tmp2); // '==' 값에 대한 동등 비교
+           console.log(tmp1 === tmp2); // '===' 값과 자료형에 대한 동등 비교
+
+           const tmp3 = Symbol('1');
+           const tmp4 = Symbol('1');
+           console.log(tmp3 === tmp4);
+
+           const myName = Symbol('name');
+           const obj = {
+                name : "치지이",
+                age : 77 
+           };
+           console.log(obj);
+           obj.name = '기시미';
+           obj["name"] = "기시미";
+           const obj1 = {
+                [myName] : "최지지",
+                age : 25
+           };
+           console.log(obj1);
+
+           /*
+            Object 타입
+             1) Map
+                : 키(key) : 밸류(value) 쌍으로 구성.
+                  
+            */
+           
+            const dictionary = {
+                red : "뻘건색",
+                orange : "주황색",
+                yellow : "노란색"
+            };
+
+            console.log(dictionary.red);
+            console.log(dictionary['orange']);
+            console.log(typeof dictionary);
+            dictionary.red = "붉은색";
+            dictionary['orange'] = "오렌지색";
+            dictionary.blue = "파란색";
+            console.log(dictionary);
+
+            //Array 타입 - 값을 리스트로 나열할 수 있는 타입
+            const strArr = [];
+            strArr.push("빨간색"); // [빨간색]
+            strArr.push("주황색"); // [빨간색, 주황색]
+            console.log(strArr);
+            console.log(strArr.pop());
+            console.log(strArr);
+            console.log(strArr[0]);
+            strArr[1] = "노란색";
+            console.log(strArr[1]);
+            console.log(strArr.length);
+
+            const customerList = [];
+            customerList.push({
+                name : "치지이",
+                age : 47,
+                gender : '남'
+            });
+
+            customerList.push({
+                name : "김수민",
+                age : 22,
+                gender : '여'
+            });
+
+            console.log(customerList);
+            customerMenu(customerList);
+
+            function customerMenu(customerList){
+                // const customerUl = document.createElement('ul');
+                const customerMenu = "<ul>";
+                for(let i = 0 ; i < customerList.length; i++){
+                    let customer = customerList[i];
+                    let customerInfo = `<li>이름 : ${customer.name}</li>` +
+                                        `<li>나이 : ${customer.age}</li>` +
+                                        `<li>성별 : ${customer.gender}</li>`;
+                    customerMenu += customerInfo;
+                }
+                customerMenu += "</ul>";
+            }
+
+        }
+    </script>
+
+</body>
+</html>

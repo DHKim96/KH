@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Html태그에 접근하기</title>
+    <style>
+        div{
+            border: 1px solid black;
+            background: black;
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h3>문제1. 색상 선택후 변경 버튼을 클릭하면 색상이 변경되도록 만들어 보세요</h3>
+    <div id="div1"></div>
+
+    <input type="color" id="selectColor"> <!--가져와서 벨류확인해보기-->
+    <button onclick="colorChange()">변경</button> <!--클릭됬을 때 위에 벨류가져와서 div1의 배경 변경해주기 -->
+
+    <script>
+        function colorChange(){
+            const color = document.getElementById('selectColor');
+            console.log(color.value);
+
+            const divEl = document.querySelector("#div1");
+            divEl.style.background = color.value;
+        }
+    </script>
+    <hr><br><br>
+    <h3>문제2. 버튼에 따른 크기조절이 가능하게 만들어 보세요</h3>
+
+    <div id="div2"></div>
+    <button onclick="reSize(50, 50)">50x50</button>
+    <button onclick="reSize(100, 100)">원본(100x100)</button>
+    <button onclick="reSize(200, 200)">200x200</button>
+
+    <script>
+        const div2El = document.getElementById("div2");
+        function halfSize(){
+            div2El.style.width = "50px";
+            div2El.style.height = "50px";
+        }
+        function defaultSize(){
+            div2El.style.width = "100px";
+            div2El.style.height = "100px";
+        }
+        function dobuleSize(){
+            div2El.style.width = "200px";
+            div2El.style.height = "200px";
+        }
+
+        function reSize(width, height){
+            div2El.style.width = width + "px";
+            div2El.style.height = height + "px";
+        }
+    </script>
+</body>
+</html>

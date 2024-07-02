@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist</title>
+    <!-- css -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- 외부라이브러리 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- 라이브러리 -->
+    <script src="index.js"></script>
+
+</head>
+<body>
+    <div class="main">
+        <h1>TodoList</h1>
+        <div class="container" id="search-bar">
+            <input type="text" onkeyup="event.keyCode === 13 ? addTodo() : false">
+            <button onclick="addTodo()">+</button>
+        </div>
+        <ul class="todo-list">   
+        </ul>
+    </div>
+</body>
+</html>

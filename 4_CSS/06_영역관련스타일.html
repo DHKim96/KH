@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영역관련스타일</title>
+    <style>
+
+        /* *{
+            margin: 0px;
+        } */
+
+        .test{
+            background-color: yellow;
+            width: 100px;
+            height: 100px;
+            border: 10px solid black;
+        }
+
+        #test1{
+            padding: 100px;/*사방으로 100px*/
+        }
+
+        #test2{
+            padding-top: 100px;
+            padding-right: 20px;
+            padding-bottom: 30px;
+            padding-left: 10px;
+        }
+
+        #test3{
+            padding: 100px 20px 30px 10px;
+            padding: 50px, 30px, 0, 0;
+        } /*test2와 동일한 표현. 위에서부터 시계 방향으로 돌아감 top, right bottom left*/
+        /*위와 오른쪽만 쓰면 대칭으로 위아래, 좌우로 설정됨*/
+        /*위, 오른쪽만 주고 싶으면 100 20 0 0 이라고 많이 표현*/
+        /*좌우만 주고 싶다면 0px, 30px 이라고 표현하면 됨.*/
+
+        #test4{
+            margin: 50px;
+        }
+
+        #test5{
+            margin-top: 100px;
+            margin-left: 30px;
+            margin: 100px 30px 10px 10px;
+        }
+
+        #test6{
+            margin: auto;
+            margin: 0 auto; /*위아래는 마진 0이고 좌우에만 오토 설정*/
+        }
+
+        #test7{
+            border: 1px solid black;
+            border-width: 5px; /*border의 첫번째 자리의 속성*/
+            border-style: dashed;/*border의 두번째 자리의 속성*/
+            border-left: 3px dashed red; /*각 테두리마다 설정 가능*/
+            border-right-color: blue; /*더 지엽적으로 한 테두리의 컬러만 설정 가능*/
+        }
+
+        #test8{
+            width: 500px;
+            height: 500px;
+            border-width: 10px;
+            box-sizing: border-box; /*많이 사용함 content-box가 기본값*/
+            background-image: url("https://postfiles.pstatic.net/MjAyNDAzMDdfMjc3/MDAxNzA5Nzg1NDE2Njk4.xVcjCQy9lGkg8T72G2QHU5Af6UP9559FQFJlT_mI5x0g.5lKdEWNmtf393M5Sh8pyXziBO3Q3RxVGkDH8Ddc4XoUg.JPEG/1_DSC00619%E2%98%85.JPG?type=w966");/*이미지 경로 넣으면 백그라운드에 이미지 들어감*/
+            background-repeat: no-repeat; /*repeat-x/y: x/y축으로만 반복해서 돌아감*/
+            background-size: auto auto;
+            background-size: 200px 150px;
+            background-position: center;/*right, left 등*/
+            background-position: 100px 50px; /*위치 조정 가능*/
+        }
+
+    </style>
+</head>
+<body>
+    <h1>여백 및 간격 관련 스타일</h1>
+
+    <h2>요소 영역 == content(내용물) + padding(여백) + border(테두리)</h2>
+
+    <h4>기준 div</h4>
+    <div class="test">기준div</div>
+
+    <h3>padding</h3>
+    <p>내용물 영역(content)과 테두리 영역(border) 사이의 거리(여백)을 조절하는 스타일 속성</p>
+    
+    <div class="test" id="test1">컨텐츠 영역</div>
+    <div class="test" id="test2">컨텐츠 영역</div>
+    <div class="test" id="test3">컨텐츠 영역</div>
+
+    <hr>
+
+    <h3>margin</h3>
+    <p>타 요소들 간 간격 조정 시 사용(테두리 바깥에 여백)</p>
+
+    <!-- h3와 p태그는 기본적으로 마진이 있어서 둘이 띄워져 있음-->
+
+
+    <div class="test" id="test4">컨텐츠 영역</div>
+    <div class="test" id="test5">컨텐츠 영역</div>
+    <div class="test" id="test6">컨텐츠 영역</div>
+
+    <hr>
+
+    <h3>테두리</h3>
+    <div class="test" id="test7"></div>
+
+    <hr>
+
+    <h3>배경 관련 스타일</h3>
+    <div class="test" id="test8">배경</div>
+    <div class="test" id="test9">배경</div>
+    <div class="test" id="test10">배경</div>
+    
+
+</body>
+</html>

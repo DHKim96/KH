@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery1</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <!-- <h1>jQuery</h1>
+    
+    <h3>* jQuery란</h3>
+
+    <p>
+        기존에 자바스크립트 언어만으로 구현하기에는 복잡했던 구문을 간소화하기 위해 만들어진<br>
+        JavaScript기반의 라이브러리(유요한 기능의 모음집) <br>
+        즉, JavaScript언어로 유용한 함수나 내용들을 다른 누군가가 이미 정의해놓은 것
+        <br>
+        복잡한 JavaScript구문보다 짧고 쉽게 개발이 가능 <br>
+        (적은 양의 코드로 빠르고, 풍부한 기능을 제공)
+        <br>
+        ==> 장점
+        1) DOM요소와 관련된 스크립트를 보다 쉽게 구현할 수 있음
+        2) AJAX(비동기식 통신) 이벤트 처리등을 폭넓게 지원함
+        3) jQuery와 관련된 확장형 플러그인, 오픈api등을 지원(차트, 슬라이드, 캘린더...)
+    </p>
+
+    <br>
+    
+    <h3>jQuery 라이브러리 연결방법</h3>
+    <p>
+        head태그 내에 script태그로 외부 jQuery관련 .js파일 연결하기 <br>
+        단 오프라인/온라인 방식이 있음
+        <br>
+        1. jQuery라이브러리 직접 다운로드 받은 후 경로지정(오프라인/다운로드)
+        2. CDN방식(온라인) <br>
+        파일을 다운로드 받아서 저장할 필요가 없음, 라이브러리를 제공하는 사이트 url제시해서 파일경로를 직접 지정
+    </p>
+
+    <h3>* jQuery구문 작성하기</h3>
+    <p>
+        jQuery구문으로 dom요소를 다루는 구문을 기본적으로 작성할 것이기 때문에 <br>
+        문서상에 요소들이 다 만들어지고나서 실행되어야한다.
+    </p> -->
+    <pre>
+        > 순수 자바스크립트에서는
+        document.onload,
+        window.onload = function(){
+            실행내용;
+        }
+
+        js에서의 window, document => onload구문은
+        해당 문서의 요소들이 전부 로드되고 외부 문서들도
+        다 가지고 온 후 뒤에 실행됨
+    </pre>
+
+    <script>
+        $(document).ready(function(){
+            console.log('documnet 로딩 완료')
+        })
+
+        $(function(){
+            console.log('documnet 로딩 완료')
+
+            //h3요소들을 선택해서 배경색 레드로 변경
+            // const h3Arr = document.getElementsByTagName('h3');
+            // const h3Arr = document.querySelectorAll('h3'); //[h3, h3, h3]
+            // for (let el of h3Arr) { //h3, h3, h3
+            //     el.style.background = "red";
+            // }
+
+            // jquery 방식
+            $('h3').css("background", "red");
+        })
+    </script>
+
+    <hr>
+    <h3>* 태그 선택자</h3>
+
+    <p>Java</p>
+    <p>Oracle</p>
+    <p>HTML</p>
+
+    <h5 id="css_box">CSS</h5>
+    <h5>JavaScript</h5>
+    <h5>jQuery</h5>
+
+    <button class="btn1">1</button>
+    <button class="btn1">2</button>
+    <button class="btn1">3</button>
+    <button class="btn1">4</button>
+    <button class="btn1">5</button>
+
+    <ul id="ul_area1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+    <script>
+        $(function(){
+            //순수자바스크립트 방식
+            //document.getElementsByTagName('태그명') : 배열
+
+            // const pArr = document.getElementsByTagName('p'); 
+            // for(let pEl of pArr) {
+            //     pEl.style.color = 'red';
+            // }
+
+            //jquery 방식 => $('태그명')
+            // $('p, h3').css("color", "red");
+            //jquery 방식 => $('선택자')
+
+            $('.btn1').click(function(){
+                alert("클릭됨")
+            });
+
+            setTimeout(function(){
+                //특정 요소들을 지우고싶을 떄
+                // $('.btn1').remove();
+                // $('#ul_area1').remove();
+                //특정 요소들을 비우고싶을 떄
+                $('#ul_area1').empty(); 
+            }, 2000)
+        })
+        document.getElementById('아이디') //  $('#아이디')
+        document.getElementsByClassName('클래스이름')//  $('.클래스이름')
+        document.getElementsByTagName('태그명')//  $('태그명')
+        document.querySelector('선택자')//  $('선택자')
+
+        let el = document.getElementById('css_box');
+        //el.스타일속성 = '변경할값'
+        //$(el).css("스타일속성", "변경할 값");
+
+        // el.innerHTML = "<span>변경할 값<span>"; 
+        // $(el).html("<span>변경할 값<span>");
+        // el.innerText = "변경할 값";
+        // $(el).text("변경할 값");
+
+        // el.on이벤트명 = function(){};
+        // $(el).이벤트명(function(){})
+    </script>
+
+    <hr>
+
+    <h3>*jQuery에서 input</h3>
+    텍스트상자 : <input type="text"> <br>
+    일반버튼 : <input type="button"> <br>
+    체크박스 : <input type="checkbox"> <br>
+    첨부파일 : <input type="file"> <br>
+    비밀번호 : <input type="password"> <br>
+    라디오버튼 : <input type="radio"> <br>
+    초기화버튼 : <input type="reset"> <br>
+    제출버튼 : <input type="submit"> <br>
+
+    <script>
+        $(function(){
+            $(":text").css("background", 'red');
+            $(":button").css({width : "100px", height : "100px"}).val("왕버튼");
+            
+            //속성을 변경
+            $(":checkbox").attr('checked', true);
+
+            //첨부파일 input의 배경색을 녹색으로
+            $(":file").css("background", "green");
+
+            //비밀번호 input의 배경색을 노란색으로
+            $(":password").css("background", "yellow");
+
+            //라디오버튼 check상태로, 가로50px 세로 50px
+            $(":radio").attr('checked', true).css({width : "50px", height : "50px"});
+
+            //제출버튼 클릭 alert("ㅋㅋㅋㅋ") 실행되도록
+            $(":submit").click(function(){
+                alert("ㅋㅋㅋㅋ")
+            })
+
+            // $(":submit").mouseenter(function(){
+            //     $(this).val("선택");
+            // })
+
+            // $(":submit").mouseout(function(){
+            //     $(this).val("제출");
+            // })
+
+            //hover(요소에 들어올 때 발생할 함수, 요소에서 빠져나갈 때 발생할 함수)
+            // $(":submit").hover(function(){
+            //     $(this).val("선택");
+            // }, function(){
+            //     $(this).val("제출");
+            // })
+
+            const tmpList = {
+                name: "jiwon",
+                age: 47,
+                gender : 'm'
+            }
+
+            const inputList = document.getElementsByTagName("input");
+           
+            $(inputList).each(function(index, value){
+                console.log(index)
+                console.log(value)
+            })
+          
+
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습문제2</title>
+    <style>
+        body{
+            position: relative;
+        }
+        .numBox{
+            width: 70px;
+        }
+
+        div{
+            display: inline-block;
+            border: 1px solid black;
+            height: 20px;
+            position: absolute;
+            bottom: 0;
+            margin-left: 5px;
+            font-size: 13px;
+            padding-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Practice2</h3>
+
+    <input type="text" id="numBox1" class="numBox">
+    <select id="operatorBox">
+        <option value="plus">+</option>
+        <option value="minus">-</option>
+        <option value="multiple">*</option>
+        <option value="divide">/</option>
+        <option value="reminder">%</option>
+    </select>
+    <input type="text" id="numBox2" class="numBox">
+    <button onclick="calc();">=</button>
+    <div id="numBox3" class="numBox"></div>
+
+    <script>
+        function calc(){
+            const num1 = Number(document.getElementById("numBox1").value);
+            const num2 = Number(document.getElementById("numBox2").value);
+            const select = document.getElementById("operatorBox");
+            const selectedIndex = select.selectedIndex;
+            const operator = select.options[selectedIndex].value;
+            const resultBox = document.getElementById("numBox3");
+            
+            console.log(operator);
+
+            if(num1 === 0 | num2 === 0){
+                resultBox.style.backgroundColor = "red";
+                resultBox.style.color = "white";
+                result = "연산 불가";
+            } else {
+                    if(operator === "plus"){
+                    result = num1 + num2;
+                } else if(operator === "minus") {
+                    result = num1 - num2;
+                } else if(operator === "multiple"){
+                    result = num1 * num2;
+                } else if(operator === "divide"){
+                    result =  num1 / num2;
+                } else {
+                    result = num1 % num2;
+                }
+            }
+            resultBox.innerHTML = result;
+
+            
+        }
+    </script>
+</body>
+</html>

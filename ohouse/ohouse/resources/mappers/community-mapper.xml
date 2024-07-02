@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="communityMapper">
+  	<resultMap type="Board" id="boardResultSet">
+  		<result column="BOARD_ID" property="boardId"/>
+  		<result column="BOARD_TITLE" property="boardTitle"/>
+  		<result column="BOARD_VIEWS" property="boardViews"/>
+  		<result column="MEMBERS_NO" property="membersNo"/>
+  		<result column="BOARD_WRITER" property="boardWriter"/>
+  		<result column="BOARD_WRITER_NAME" property="boardWriterName"/>
+  		<result column="BOARD_THUMBNAIL" property="boardThumbnail"/>
+  		<result column="BOARD_CREATE_TIME" property="boardCreateTime"/>
+  		<result column="BOARD_MODIFY_TIME" property="boardModifyTime"/>
+  		<result column="BOARD_INTRODUCTION" property="introduction"/>
+  		<result column="BOARD_DESCRIPTION" property="description"/>
+  		<result column="FILTER_TYPE" property="filType"/>
+  		<result column="FILTER_AREA" property="filArea"/>
+  		<result column="FILTER_NUM" property="filNum"/>
+  		<result column="FILTER_DIRECTION" property="filDirection"/>
+  		<result column="FILTER_PAST" property="filPast"/>
+  		<result column="FILTER_LOCAL" property="filLocal"/>
+  		<result column="FILTER_FAMILY" property="filFamily"/>
+  		<result column="FILTER_PET" property="filPet"/>
+  		<result column="FILTER_FAMILY_MEM_CNT" property="filFamMemCnt"/>
+  		<result column="FILTER_FIELD" property="filField"/>
+  		<result column="FILTER_WORKER" property="filWorker"/>
+  		<result column="FILTER_RANGE" property="filRange"/>
+  		<result column="FILTER_PERIOD" property="filPeriod"/>
+  		<result column="FILTER_PERIOD_TYPE" property="filPeriodType"/>
+  		<result column="FILTER_CONSTRUCTION_PRICE" property="filConPrice"/>
+  		<result column="FILTER_STYLE_PRICE" property="filStPrice"/>
+  		<result column="FILTER_URL" property="filUrl"/>
+  		<result column="FILTER_COPYRIGHT" property="filCopy"/>
+  		<result column="BOARD_STATUS" property="boardStatus"/>
+  		<result column="SCRAP_COUNT" property="scrapCount"/>
+  	</resultMap>
+  	<resultMap id="mediaResultSet" type="Media">
+  		<result column="MEDIA_ID" property="mediaId"/>
+  		<result column="BOARD_ID" property="mediaBoardId"/>
+  		<result column="MEMBERS_NO" property="mediaMembersId"/>
+  		<result column="MEDIA_TYPE" property="mediaType"/>
+  		<result column="ORIGIN_NAME" property="originName"/>
+  		<result column="CHANGE_NAME" property="changeName"/>
+  		<result column="PROFILE" property="filePath"/>
+  		<result column="FILE_PATH" property="filePath"/>
+  		<result column="FILE_LEVEL" property="fileLevel"/>
+  		<result column="UPLOAD_DATE" property="uploadDate"/>
+  		<result column="MEDIA_STATUS" property="mediaStatus"/>
+  	</resultMap>
+  	<resultMap id="scrapResultSet" type="Scrap">
+  		<result column="SCRAP_ID" property="scrapId"/>
+  		<result column="SCRAP_TYPE" property="scrapType"/>
+  		<result column="BOARD_ID" property="scrapBoardId"/>
+  		<result column="MEDIA_ID" property="scrapMediaId"/>
+  		<result column="MEMBERS_NO" property="scrapMembersNo"/>
+  		<result column="SCRAP_CREATE_TIME" property="scrapCreateTime"/>
+  		<result column="SCRAP_STATUS" property="scrapStatus"/>
+  	</resultMap>  	
+  	 <resultMap id="replyResultSet" type="Reply">
+  		 <result column="REPLY_ID" property="replyId" />
+  		 <result column="REPLY_CONTENT" property="replyContent" />
+  		 <result column="REPLY_CREATE_DATE" property="replyCreateDate" />
+  		 <result column="REPLY_MODIFY_DATE" property="replyModifyDate" />
+  		 <result column="BOARD_ID" property="replyBoardId" />
+  		 <result column="MEMBERS_NO" property="replyMembersNo" />
+  		 <result column="REPLY_STATUS" property="replyStatus" />
+  		 <result column="MEMBERS_NAME" property="replyWriter"/>
+  	</resultMap>
+  	<resultMap id="productResultSet" type="Product">
+  		<result column="PRODUCT_ID" property="productId" />
+  		<result column="PRODUCT_NAME" property="productName" />
+  		<result column="PRODUCT_PRICE" property="productPrice" />
+  		<result column="PRODUCT_THUMBNAIL" property="productThumbnail" />
+  	</resultMap>
+  	<insert id="insertBoard" parameterType="Board">
+  	INSERT
+	INTO BOARD
+	(
+		BOARD_ID,
+		BOARD_TITLE,
+		BOARD_INTRODUCTION,
+		BOARD_DESCRIPTION,
+		FILTER_TYPE,
+		FILTER_AREA,
+		FILTER_NUM,
+		FILTER_DIRECTION,
+		FILTER_PAST,
+		FILTER_LOCAL,
+		FILTER_FAMILY,
+		FILTER_PET,
+		FILTER_FAMILY_MEM_CNT,
+		FILTER_FIELD,
+		FILTER_WORKER,
+		FILTER_RANGE,
+		FILTER_PERIOD,
+		FILTER_PERIOD_TYPE,
+		FILTER_CONSTRUCTION_PRICE,
+		FILTER_URL,
+		FILTER_COPYRIGHT,
+		MEMBERS_NO
+	)
+	VALUES
+	(
+		SEQ_BODID.NEXTVAL,
+		#{boardTitle},
+		#{introduction},
+		#{description},
+		#{filType},
+		#{filArea},
+		#{filNum},
+		#{filDirection},
+		#{filPast},
+		#{filLocal},
+		#{filFamily},
+		#{filPet},
+		#{filFamMemCnt},
+		#{filField},
+		#{filWorker},
+		#{filRange},
+		#{filPeriod},
+		#{filPeriodType},
+		#{filConPrice},
+		#{filUrl},
+		#{filCopy},
+		#{membersNo}
+	)
+  	</insert>
+  	
+  	<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
+  	SELECT
+		BOARD_ID,
+		BOARD_TITLE,
+		BOARD_VIEWS,
+		TO_CHAR(BOARD_CREATE_TIME, 'YYYY/MM/DD') AS "BOARD_CREATE_TIME",
+		TO_CHAR(BOARD_MODIFY_TIME, 'YYYY/MM/DD') AS "BOARD_MODIFY_TIME",
+		BOARD_INTRODUCTION,
+		BOARD_DESCRIPTION,
+		FILTER_TYPE,
+		FILTER_AREA,
+		FILTER_NUM,
+		FILTER_DIRECTION,
+		FILTER_PAST,
+		FILTER_LOCAL,
+		FILTER_FAMILY,
+		FILTER_PET,
+		FILTER_FAMILY_MEM_CNT,
+		FILTER_FIELD,
+		FILTER_WORKER,
+		FILTER_RANGE,
+		FILTER_PERIOD,
+		FILTER_PERIOD_TYPE,
+		FILTER_CONSTRUCTION_PRICE,
+		FILTER_STYLE_PRICE,
+		FILTER_URL,
+		FILTER_COPYRIGHT,
+		B.MEMBERS_NO,
+		MEMBERS_ID AS "BOARD_WRITER",
+		MEMBERS_NAME AS "BOARD_WRITER_NAME"
+	FROM BOARD B
+	JOIN MEMBERS M ON (B.MEMBERS_NO = M.MEMBERS_NO)
+	WHERE BOARD_ID = #{boardId}
+	AND BOARD_STATUS = 'Y'
+  	</select>
+  	<!-- 기본 정렬은 최신순. 이후 정렬은 동적 쿼리 사용 -->
+  	<select id="selectBoardList" resultMap="boardResultSet">
+	SELECT
+		B.BOARD_ID AS "BOARD_ID",
+		B.MEMBERS_NO AS "MEMBERS_NO",
+		BOARD_TITLE,
+		BOARD_VIEWS,
+		FILE_PATH || CHANGE_NAME AS "BOARD_THUMBNAIL",
+		MEMBERS_ID AS "BOARD_WRITER",
+		(
+         SELECT COUNT(*)
+		 FROM SCRAP S
+		 WHERE S.BOARD_ID = B.BOARD_ID
+              ) AS "SCRAP_COUNT"
+	FROM BOARD B
+	JOIN MEDIA MED ON (B.BOARD_ID = MED.BOARD_ID)
+	JOIN MEMBERS MEM ON (B.MEMBERS_NO = MEM.MEMBERS_NO)
+	WHERE BOARD_STATUS = 'Y'
+	  AND FILE_LEVEL = 1
+    ORDER BY BOARD_CREATE_TIME DESC
+  	</select>
+  	<select id="selectProfile" resultMap="mediaResultSet" parameterType="_int">
+	  SELECT
+		  MEDIA_ID,
+		  FILE_PATH || CHANGE_NAME AS "PROFILE"
+	  FROM MEDIA
+	  WHERE MEMBERS_NO = ${membersNo}
+	   AND MEDIA_STATUS = 'Y'
+  	</select>
+  	<update id="updateBoard" parameterType="Board">
+  	UPDATE BOARD
+	SET 
+		BOARD_TITLE = #{boardTitle},
+		BOARD_INTRODUCTION = #{introduction},
+		BOARD_DESCRIPTION = #{description},
+		FILTER_TYPE = #{filType},
+		FILTER_AREA = #{filArea},
+		FILTER_NUM = #{filNum},
+		FILTER_DIRECTION = #{filDirection},
+		FILTER_PAST = #{filPast},
+		FILTER_LOCAL = #{filLocal},
+		FILTER_FAMILY = #{filFamily},
+		FILTER_PET = #{filPet},
+		FILTER_FAMILY_MEM_CNT = #{filFamMemCnt},
+		FILTER_FIELD = #{filField},
+		FILTER_WORKER = #{filWorker},
+		FILTER_RANGE = #{filRange},
+		FILTER_PERIOD = #{filPeriod},
+		FILTER_PERIOD_TYPE = #{filPeriodType},
+		FILTER_CONSTRUCTION_PRICE = #{filConPrice},
+		FILTER_STYLE_PRICE = #{filStPrice},
+		FILTER_URL = #{filUrl},
+		FILTER_COPYRIGHT = #{filCopy},
+		BOARD_MODIFY_TIME = SYSDATE
+	WHERE BOARD_ID = #{boardId}
+  	</update>
+  	<update id="updateMedia">
+  	UPDATE MEDIA
+	SET
+		MEDIA_TYPE = 1,
+		ORIGIN_NAME = #{originName},
+		CHANGE_NAME = #{changeName},
+		FILE_LEVEL = #{fileLevel},
+		FILE_PATH = #{filePath}
+	WHERE MEDIA_ID = #{mediaId}
+	</update>
+  	<update id="deleteBoard" parameterType="_int">
+  	UPDATE BOARD
+	SET BOARD_STATUS = 'N'
+	WHERE BOARD_ID = #{boardId}
+	</update>
+	<update id="increaseViews" parameterType="_int">
+	UPDATE BOARD
+	SET BOARD_VIEWS = BOARD_VIEWS + 1
+	WHERE BOARD_ID = #{boardId}
+	  AND BOARD_STATUS = 'Y'
+  	</update>
+  	<!-- media 객체 crud -->
+  	<!-- 썸네일 -->
+  	<insert id="insertCommunityThumbnail">
+  	INSERT
+	INTO MEDIA
+	(
+		MEDIA_ID,
+		BOARD_ID,
+		MEDIA_TYPE,
+		ORIGIN_NAME,
+		CHANGE_NAME,
+		FILE_PATH,
+		FILE_LEVEL
+	)
+	VALUES
+	(
+		SEQ_MEDID.NEXTVAL,
+		SEQ_BODID.CURRVAL,
+		1,
+		#{originName},
+		#{changeName},
+		#{filePath},
+		1
+	)
+	</insert>
+  	<!-- 일반 -->
+  	<insert id="insertCommunityMedia">
+  	INSERT
+	INTO MEDIA
+	(
+		MEDIA_ID,
+		BOARD_ID,
+		MEDIA_TYPE,
+		ORIGIN_NAME,
+		CHANGE_NAME,
+		FILE_LEVEL,
+		FILE_PATH
+	)
+	VALUES
+	(
+		SEQ_MEDID.NEXTVAL,
+		SEQ_BODID.CURRVAL,
+		1,
+		#{originName},
+		#{changeName},
+		#{fileLevel},
+		#{filePath}
+	)
+  	</insert>
+  	<insert id="insertCommunityNewMedia">
+  	INSERT
+	INTO MEDIA
+	(
+		MEDIA_ID,
+		BOARD_ID,
+		MEDIA_TYPE,
+		ORIGIN_NAME,
+		CHANGE_NAME,
+		FILE_PATH
+	)
+	VALUES
+	(
+		SEQ_MEDID.NEXTVAL,
+		#{mediaBoardId},
+		#{mediaType},
+		#{originName},
+		#{changeName},
+		#{filePath}
+	)
+  	</insert>
+  	<select id="selectCommunityMedia" resultMap="mediaResultSet" parameterType="_int">
+  	SELECT
+		MEDIA_ID,
+		MEDIA_TYPE,
+		ORIGIN_NAME,
+		CHANGE_NAME,
+		FILE_PATH
+	FROM MEDIA
+	WHERE BOARD_ID = ${boardId}
+	  AND MEDIA_STATUS = 'Y'
+	</select>
+  	<!-- SCRAP -->
+  	<select id="selectBoardScrapOne" resultMap="scrapResultSet">
+  	SELECT SCRAP_ID,
+  			BOARD_ID,
+  			MEMBERS_NO,
+  			SCRAP_STATUS
+  	FROM SCRAP
+  	WHERE BOARD_ID = ${scrapBoardId}
+  	</select>
+  	<select id="selectBoardScrap" resultMap="scrapResultSet">
+  	SELECT SCRAP_ID,
+  			BOARD_ID,
+  			MEMBERS_NO,
+  			SCRAP_STATUS
+  	FROM SCRAP
+  	WHERE BOARD_ID = ${scrapBoardId}
+  	AND SCRAP_STATUS = 'Y'
+  	</select>
+  	<select id="selectMediaScrapOne" resultMap="scrapResultSet">
+  	SELECT SCRAP_ID,
+  			MEDIA_ID,
+  			MEMBERS_NO,
+  			SCRAP_STATUS
+  	FROM SCRAP
+  	WHERE MEDIA_ID = ${scrapMediaId}
+  	</select>
+  	<select id="selectMediaScrap" resultMap="scrapResultSet">
+  	SELECT S.SCRAP_ID,
+  			M.MEDIA_ID,
+  			S.MEMBERS_NO,
+  			SCRAP_STATUS
+  	FROM SCRAP S
+  	JOIN MEDIA M ON (S.MEDIA_ID = M.MEDIA_ID)
+  	WHERE M.BOARD_ID = ${scrapBoardId}
+  	AND SCRAP_STATUS = 'Y'
+  	</select>
+  	<insert id="insertBoardScrap">
+  	INSERT
+	INTO SCRAP
+	(
+		SCRAP_ID,
+		SCRAP_TYPE,
+		MEMBERS_NO,
+		BOARD_ID
+	)
+	VALUES
+	(
+		SEQ_SCRID.NEXTVAL,
+		3,
+		${scrapMembersNo},
+		${scrapBoardId}
+	)
+  	</insert>
+  	<insert id="insertMediaScrap">
+  	INSERT
+	INTO SCRAP
+	(
+		SCRAP_ID,
+		SCRAP_TYPE,
+		MEMBERS_NO,
+		MEDIA_ID
+	)
+	VALUES
+	(
+		SEQ_SCRID.NEXTVAL,
+		2,
+		${scrapMembersNo},
+		${scrapMediaId}
+	)
+  	</insert>
+	<update id="updateBoardScrap">
+	UPDATE SCRAP
+	SET
+	SCRAP_STATUS='${scrapStatus}'
+	WHERE SCRAP_ID=${scrapId}
+	</update>
+	<update id="updateMediaScrap">
+	UPDATE SCRAP
+	SET
+	SCRAP_STATUS='${scrapStatus}'
+	WHERE SCRAP_ID=${scrapId}
+	</update>
+  	<select id="selectBoardScrapCount" resultType="_int">
+  	SELECT COUNT(*)
+	FROM SCRAP
+	WHERE BOARD_ID = ${scrapBoardId}
+	AND SCRAP_STATUS = 'Y'
+  	</select>
+  	<select id="selectMediaScrapCount" resultType="_int">
+  	SELECT COUNT(*)
+	FROM SCRAP
+	WHERE MEDIA_ID = ${scrapMediaId}
+	AND SCRAP_STATUS = 'Y'
+  	</select>
+  	<!-- REPLY -->
+  	<insert id="insertReply">
+  		INSERT
+  		INTO REPLY
+  		(
+  			REPLY_ID,
+			REPLY_CONTENT,
+			BOARD_ID,
+			MEMBERS_NO
+  		)
+  		VALUES
+  		(
+  			SEQ_REPID.NEXTVAL,
+  			#{replyContent},
+  			#{replyBoardId},
+  			#{replyMembersNo}
+  		)
+  	</insert>
+  	<select id="selectReplyList" resultMap="replyResultSet">
+  		SELECT
+			REPLY_ID,
+			REPLY_CONTENT,
+			REPLY_CREATE_DATE,
+			BOARD_ID,
+			R.MEMBERS_NO,
+			MEMBERS_NAME
+		FROM REPLY R
+		JOIN MEMBERS M ON (R.MEMBERS_NO = M.MEMBERS_NO)
+		WHERE REPLY_STATUS = 'Y'
+		AND BOARD_ID = #{boardId}
+		ORDER BY REPLY_CREATE_DATE DESC
+  	</select>
+  	<update id="updateReply">
+  		UPDATE REPLY
+  		SET
+  			REPLY_CONTENT = #{replyContent},
+  			REPLY_MODIFY_DATE = SYSDATE
+  		WHERE REPLY_ID = #{replyId}
+  	</update>
+  	<update id="deleteReply">
+  		UPDATE REPLY
+  		SET
+  			REPLY_STATUS = 'N'
+  		WHERE REPLY_ID = #{replyId}
+  	</update>
+	<select id="selectProductList" resultMap="productResultSet">
+		SELECT 
+		    P.PRODUCT_ID,
+		    PRODUCT_NAME,
+		    PRODUCT_PRICE,
+		    FILE_PATH || CHANGE_NAME AS "PRODUCT_THUMBNAIL"
+		FROM PRODUCT P
+		JOIN MEDIA MED ON (P.PRODUCT_ID = MED.PRODUCT_ID)
+		WHERE PRODUCT_NAME LIKE '%${key}%'
+		AND PRODUCT_STATUS = 'Y'
+		AND (ROWNUM &lt;= 5)
+		ORDER BY PRODUCT_SALES DESC
+	</select>
+ </mapper>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

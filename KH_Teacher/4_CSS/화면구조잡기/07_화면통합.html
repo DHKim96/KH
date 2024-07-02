@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 문서 구조 상세</title>
+    <style>
+        div,input{box-sizing: border-box; } 
+        .wrap{width: 1000px;height: 800px; margin: auto;}
+       
+        /* 공통특성 가로 길이 100프로  */
+        .wrap>div{width: 100%;}
+        #header, #footer{height: 20%;}
+        #navigator{height: 5%;}
+        #content{height: 55%;}
+
+        #header>div, #content>div {height: 100%; float: left;}
+
+        /* 20 65 15 */
+        #header_1{width: 20%;}
+        #header_2{width: 65%;}
+        #header_3{width: 15%;}
+
+        /* 15 60 25 */
+        #content_1{width: 15%}
+        #content_2{width: 60%;}
+        #content_3{width: 25%;}
+
+        /* 푸터바 디자인 */
+        #footer>div{width: 100%;}
+        #footer_1{height: 20%;}
+        #footer_2{height: 80%;}
+
+        #footer_2>p{
+            width: 100%;
+           
+            box-sizing: border-box;
+            margin: 0; /* 기본적으로 마진이 존재함! */
+            font-size: 12px;
+            color: rgb(58, 58, 58);
+        }
+
+        #p1{height: 80%; padding: 5px 15px;}
+        #p2{height: 20%; text-align: center;}
+
+        #footer_1>a {
+            text-decoration: none;
+            color: rgb(58, 58, 58);
+            font-weight: 600;
+            margin: 15px;
+            vertical-align: middle;
+        }
+        
+        /* 로그인폼 스타일 */
+        #login_form{width: 100%; height: 30%;}
+        #login_form>*{width: 100%;}
+        #login_form_input{height: 80%;}
+        #login_form_etc{height: 20%; text-align: center;}
+
+        #login_form_input>*{height: 100%; float: left;}
+        #login_input_id_pwd{width: 65%;}
+        #login_input_btn{width: 35%;}
+
+        #login_form_etc>a{
+            text-decoration: none;
+            color: rgb(58,58,58);
+            font-size: 12px;
+            margin: 10px;
+            vertical-align: middle;
+        }
+
+        #login_input_id_pwd>input{width: 100%; height: 50%; box-sizing: border-box;}
+        #login_input_btn>input{width: 100%; height: 100%;}
+
+        /* 검색창 스타일 */
+        #header_2{position: relative;}
+
+        #search_form{width: 80%; height: 20%;}
+
+        #search_form{
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            /* 네개 다 극단으로 가려고 해서 결국 가운데 배치  */
+        }
+
+        #search_form>div{height: 100%; float: left;}
+        #search_text{width: 80%;}
+        #search_btn{width: 20%;}
+
+        /* 후손 선택자 */
+        #search_form input{width: 100%; height: 100%;}
+        
+        /* 메뉴바 스타일 */
+
+        #navi{
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        #navi>li{
+            float: left;
+           
+            width: 15%;
+            height: 100%;
+            text-align: center;
+        }
+
+        #navi a{
+            
+            text-decoration: none;
+            color: orange;
+            font-size: 18px;
+            font-weight: 900;
+
+            width: 100%;
+            height: 100%; /*이거안됨. 인라인이라*/
+            display: block;
+            /* vertical-align: middle;  블럭일 때는 안된다 */
+            line-height: 35px;
+            transform: scale(1);
+        }
+
+        #navi a:hover{
+            color: orangered;
+        }
+
+        #navi>li>ul{
+            list-style-type: none;
+            padding: 0;
+            display: none;
+        }
+
+        #navi>li>ul a{font-size: 15px;}
+        #navi>li>a:hover+ul{display: block;}
+        #navi>li>ul:hover{display: block;}
+
+
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div id="header">
+            <div id="header_1"></div>
+            <div id="header_2">
+                <form action="#" id="search_form">
+            
+                    <div id="search_text">
+                        <input type="text" name="keyword">
+                    </div>
+                    <div id="search_btn">
+                        <input type="submit" value="검색">
+                    </div>
+                    
+        
+                </form>
+
+
+            </div>
+            <div id="header_3"></div>
+        </div>
+        <div id="navigator">
+            <ul id="navi">
+                <li><a href="#">Java</a></li>
+                <li><a href="#">Oracle</a></li>
+                <li><a href="#">Front-end</a>
+                    <ul>
+                        <li><a href="#">HTML</a></li>
+                        <li><a href="#">CSS</a></li>
+                        <li><a href="#">JavaScript</a></li>
+                        <li><a href="#">jQuery</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Server</a>
+                    <ul>
+                        <li><a href="#">JDBC</a></li>
+                        <li><a href="#">Servlet</a></li>
+                        <li><a href="#">JSP</a></li>
+                        <li><a href="#">AJAX</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Framework</a>
+                    <ul>
+                        <li><a href="#">myBatis</a></li>
+                        <li><a href="#">Spring</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="content">
+            <div id="content_1"></div>
+            <div id="content_2"></div>
+            <div id="content_3">
+        <!-- 로그인폼 전체 감싸는 div-->
+        <div id="login_form">
+                
+            <!--2_1. 입력받아 요청할 수 있는 form-->
+            <form action="#" id="login_form_input">
+                <!-- 3_1. ID/PWD 텍스트 상자가 들어갈 div-->
+                <div id="login_input_id_pwd">
+                    <input type="text" name="userId" placeholder="아이디를 입력해주세요">
+                    <input type="password" name="password" placeholder="비밀번호를 입력해주세요">
+                </div>
+
+
+                <!-- 3_2. 로그인 버튼이 들어갈 div-->
+                <div id="login_input_btn">
+                    <input type="submit" value="로그인">
+                </div>
+                
+            </form>
+
+            <!-- 2_2. 회원가입, ID ,PWD 찾기 링크 영역-->
+            <div id="login_form_etc">
+                <a href="#">회원가입</a>
+                <a href="#">ID/PWD 찾기</a>
+
+            </div>
+
+</div>
+
+
+
+
+
+            </div>
+        </div>
+        <div id="footer">
+            <div id="footer_1">
+                <a href="#">이용약관</a> |
+                <a href="#">개인정보취급방침</a> |
+                <a href="#">인재채용</a> |
+                <a href="#">고객센터</a>
+    
+            </div>
+            <div id="footer_2">
+                <p id="p1">
+                    강남지원 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F <br>
+                    강남지원 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F, 5F, 7F <br>
+                    강남지원 3관 : 서울특별시 강남구 테헤란로 130 호산빌딩 5F, 6F <br>
+                    종로지원 : 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 2F, 3F <br>
+                    당산지원 : 서울특별시 영등포구 선유동2로 57 이레빌딩(구관) 19F, 20F 
+                </p>
+                <p id="p2">
+                    Copyright © 1998-2024 KH Information Educational Institute All Right Reserved
+                </p>
+            </div>
+
+
+
+        </div>
+    </div>
+    
+</body>
+</html>

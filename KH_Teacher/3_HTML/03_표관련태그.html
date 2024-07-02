@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>표관련태그</title>
+</head>
+<body>
+    <!--
+        표 : 웹 문서에서 자료를 정리할 때 주로 사용
+            행과 열로 이루어져있고, 행과 열이 만나는 지점을 셀이라고함
+        
+        표를 만드는 태그에는 <table>, <tr>, <th>, <td>가 있다
+        
+        <table></table> : 기본적인 표를 생성해주는 태그
+        <tr></tr> : 표의 한 행을 나타내는 태그 
+        <th></th> : 표의 제목 셀을 나타내는 태그 => 글자 굵게, 가운데정렬
+        <td></td> : 표의 일반 셀을 나타내는 태그
+        <table>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    -->
+
+    <h1>기본적인 표 만들기</h1>
+    <table border="1"> <!--border속성 : 표의 테두리 두께-->
+        <!--caption : 테이블의 제목을 추가하는 태그-->
+        <caption><b>웹브라우저의 종류</b></caption>
+        <tr>
+            <th width="120px" height="50">브라우저</th> <!--width, height속성을 이용해서 가로, 세로 길이 지정 가능-->
+            <th width="80">제조사</th>
+            <th width="300">홈페이지</th>
+        </tr>
+        <tr>
+            <td>Internet Explorer</td>
+            <td>MS</td>
+            <td>https://www.microsoft.com/</td>
+        </tr>
+        <tr>
+            <td>사파리</td>
+            <td>애플</td>
+            <td>https://www.apple.com/</td>
+        </tr>
+        <tr>
+            <td>Chrome</td>
+            <td>Google</td>
+            <td>https://www.Google.com/</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h1>표의 행과 열을 합치는 속성</h1>
+    <!--
+        셀(th, td)태그의 속성을 이용해서 행 또는 열을 합칠 수 있음
+
+        colspan="2" : 2개의 열을 합치기
+        rowspan="2" : 2개의 행을 합치기
+    -->
+
+    <h3>이력서</h3>
+    <table border="1">
+        <tr>
+            <td width="130" height="130" colspan="2" rowspan="2">사진</td>
+            <td width="80">이름</td>
+            <td width="200">최지원</td>
+        </tr>
+        <tr>
+            <td>연락처</td>
+            <td>010-0000-0000</td>
+        </tr>
+        <tr>
+            <td width="70" height="50">주소</td>
+            <td colspan="3">경기도 군포시 ooo ooo ooo ooo</td>
+        </tr>
+        <tr>
+            <td width="130">자기소개</td>
+            <td colspan="3">안녕하세요 저는 ooooooooooooooooooooooooooooooooooooooooooooooo</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <!--5행 3열 표 만들기-->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>주소</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>최지원</th>
+                <th>55</th>
+                <th><mark>경기도 군포</mark></th>
+            </tr>
+            <tr>
+                <th>최지투</th>
+                <th>22</th>
+                <th><mark>경기도 군포</mark></th>
+            </tr>
+            <tr>
+                <th>최지삼</th>
+                <th>33</th>
+                <th><mark>경기도 군포</mark></th>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>총인원</th>
+                <td colspan="2">3명</td>
+            </tr>
+        </tfoot>
+    </table>
+
+</body>
+</html>

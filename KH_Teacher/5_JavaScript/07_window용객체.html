@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>window 객체</h1>
+    <p>
+        window객체는 자바스크립트 최상위 객체이며 BOM, DOM으로 나뉨
+        - BOM(Browser Object Model) : location객체(주소창관리), screen객체(창과 관련), navigator객체(브라우저 관련)
+        - DOM(Document Object Model) : document객체 
+    </p>
+
+    <h4>- [window.]open(["url", "창의특성"])</h4>
+    <button onclick="test1()">네이버</button>
+    <script>
+        function test1(){
+            // window.open(); 새창열림
+
+            //window.open(첫번째, 두번째, 세번째);
+            // 첫번째 : 새창에서 열고자하는 url 주소
+            // window.open("https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=kh정보교육원");
+            // 두번째 : 창이름, 창이름이 같은게 이미 열려있을 경우 새로운 창이 열리지않고 이미 열린창이 새로고침됨
+            // window.open("http://www.naver.com", "naver");
+            // 세번째 : 새창의 너비, 높이, 주소창여부, 툴바여부, 스크롤여부 등등 새로운 창의 특성(브라우저마다 적용여부가 다름)
+
+            /*
+                창의특성
+                width : 너비(px)
+                height : 높이(px)
+
+                => yes | no
+                resizable : 창의 크기 조절 가능여부
+                location : 주소창
+                menubar: 메뉴바
+                scrollbars : 스크롤바
+                status : 상태표시줄
+                toolbar : 도구모음
+            */
+
+            //크롬 : 주소창 수정 X, toolbar, status, menubar X
+            // window.open("http://www.naver.com", "naver", "width=500, height=600, resizable=no, location=yes, menubar=yes, status=yes, toolbar=yes");
+        }
+    </script>
+
+    <hr>
+
+    <h3>window 객체의 timer관련 메소드</h3>
+    <h4>window.setTimeOut(함수, 시간ms)</h4> <!--일정시간 후에 함수 딱 한번만 실행해줘-->
+    <button onclick="test2()">실행</button>
+
+    <script>
+        function test2(){
+            // const myWindow = window.open();
+            // myWindow.alert("ㅋㅋㅋㅋ");
+
+            // setTimeout(function(){
+            //     myWindow.close();
+            // }, 3000)
+            
+            // 1s === 1000ms
+            //3초후에 페이지 종료
+
+            console.log("setTimeout 이전")
+
+            setTimeout(function(){
+                console.log("setTimeout 실행")
+            },2000)
+
+            console.log("setTimeout 이후")
+
+            function setTimeout(callback, time){
+                //시간지연 ->time
+                //시간지연완료
+                callback();
+            }
+
+            // setTimeout : 내가 제시한 일정 시간 후에 해당함수 "한번만" 호출
+        }
+    </script>
+
+    <br>
+
+    <h4>- window.setInterval(함수, 시간ms)</h4>
+    <button onclick="test3()">실행</button>
+    <div id="area1" class="area"></div>
+
+    <script>
+        function test3(){
+            const area1 = document.getElementById('area1');
+            //1초마다 카운트값 1씩 증가 => 스탑워치처럼
+            let count = 0;
+            setInterval(function(){
+                // area1.innerHTML = count++;
+                new Date()
+                //시계만들기
+                area1.innerHTML = getNowTimeHHMMSS();
+
+            }, 1000);
+
+        }
+
+        function getNowTimeHHMMSS(time){
+            const now = time ? new Date(time) : new Date();
+
+            let hour = now.getHours();
+            let min = now.getMinutes();
+            let sec = now.getSeconds();
+
+            if (hour < 10) {
+                hour = "0" + hour;
+            }
+
+            if (min < 10) {
+                min = "0" + min;
+            }
+
+            if (sec < 10) {
+                sec = "0" + sec;
+            }
+
+            const str = hour + " : " + min + " : " + sec;
+            return str;
+        }
+    </script>
+
+    <hr>
+
+    <h1> * BOM(Browser Object Model)</h1>
+
+    <h3>location 객체</h3> 
+    <p>브라우저 주소창곽 관련된 객체</p>
+
+    <button onclick="console.log(location)">실행확인</button>
+
+    <a href="http://www.naver.com">네이버로 이동</a>
+    <button onclick="location.href='http://www.naver.com'">네이버로 이동</button>
+
+    <button onclick="location.assign('http://www.google.com')">구글로 이동</button>
+    <button onclick="location.replace('http://www.google.com')">구글로 이동</button>
+    <!-- replace는 뒤로가기를 사용할 수 없도록 ip와 포트이외에 경로를 삭제함 -->
+
+    <br><br>
+    <button onclick="location.href = location.href">새로고침</button>
+    <button onclick="location.reload()">새로고침</button>
+
+    <br><br><br>
+
+    <h3>screen 객체</h3>
+    <button onclick="console.log(screen)">screen객체 확인</button>
+
+    <h3>navigator 객체</h3>
+    <button onclick="console.log(navigator)">navigator객체 확인</button>
+
+    <h3>history 객체</h3>
+    <button onclick="console.log(history)">history객체 확인</button>
+
+    <br>
+    <hr>
+
+    <h1>DOM 구성하기</h1>
+    <p>
+        HTML에 있는 각각의 요소들을 노드(Node)라고 함 <br>
+        >요소노드(Element Node) : 태그 그 자체만을 의미 <br>
+        >텍스트노드(Text Node) : 태그내에 기록되는 내용 <br> <br>
+    </p>
+
+    <button onclick="test4()">Element 직접 생성</button>
+
+    <div id="area2">
+
+    </div>
+
+    <script>
+        function test4(){
+            //<h3>안녕하세요</h3>
+
+            //동적으로 요소를 만드는 방법1. "문자열"
+            document.getElementById("area2").innerHTML = "<h3>안녕하세요</h3>";
+
+            //동적으로 요소를 만드는 방법2. documnet에서 제공하는 메소드를 통해서 생성
+            let h3El = document.createElement("h3");// <h3></h3>
+            h3El.innerText = "안녕하세요"; //<h3>안녕하세요</h3>
+
+            document.getElementById("area2").appendChild(h3El); // appendChild맨마지막 자식요소로 추가
+        }
+    </script>
+</body>
+</html>

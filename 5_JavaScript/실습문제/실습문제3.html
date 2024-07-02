@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Practice3</h1>
+    <form action="">
+        <fieldset>
+            <legend><strong>회원가입</strong></legend>
+            아이디 : <input type="text" class="membershipInfo" id="inputId">
+            <!-- 라벨로 처리할것-->
+            <span class="notice" id="noticeId"></span><br><br> 
+
+            비밀번호 : <input type="password" class="membershipInfo" id="inputPwd"><br><br>
+
+            비밀번호확인: <input type="password" name="" id="confirmPwd">
+            <span class="notice" id="noticePwd"></span><br><br>
+
+            이름 : <input type="text" class="membershipInfo" id="inputName"> <br><br>
+
+            <input type="submit" id="submit" value="회원가입">
+        </fieldset>
+    </form>
+    <script>
+        const inputId = document.getElementById("inputId");
+        const noticeArr = document.getElementsByTagName("span");
+        const inputPwd = document.getElementById("inputPwd");
+        const confirmPwd = document.getElementById("confirmPwd");
+        const submit = document.getElementById("submit");
+        const membershipInfo = document.getElementsByClassName("membershipInfo");
+        let messageId = "";
+        let messagePwd = "";
+        let colorMessageId = "";
+        let colorMessagePwd = "";
+
+        inputId.addEventListener("keyup", function(){
+            if(inputId.value === "user01"){
+                messageId = "이미 존재하는 아이디입니다.";
+                colorMessageId = "red";
+            } else {
+                messageId = "사용 가능한 아이디입니다.";
+                colorMessageId = "green";
+            }
+            noticeArr[0].innerHTML = messageId;
+            noticeArr[0].style.color = colorMessageId;
+        });
+
+        confirmPwd.addEventListener("blur", function(){
+            if(confirmPwd.value === inputPwd.value){
+                messagePwd = "비밀번호가 일치합니다.";
+                colorMessagePwd = "green";
+            } else {
+                messagePwd = "비밀번호가 일치하지 않습니다.";
+                colorMessagePwd = "red";
+            }
+            noticeArr[1].innerHTML = messagePwd;
+            noticeArr[1].style.color = colorMessagePwd;
+        });
+
+        submit.addEventListener("click", function(){
+            let str = "";
+            for(let i = 0;  i < membershipInfo.length; i++){
+                if(membershipInfo[i].value === ""){
+                    switch(membershipInfo[i].id){
+                        case "inputId" :
+                            str = "아이디";
+                            break;
+                        case "inputPwd" :
+                            str = "비밀번호";
+                            break;
+                        case "inputName" :
+                            str = "이름";                   
+                    }
+                    alert(`${str}을(를) 입력해주세요.`);
+                    membershipInfo[i].focus();
+                    event.preventDefault();
+                    return;
+                } 
+            }
+            if(messageId === "이미 존재하는 아이디입니다."){
+                //알림창
+                membershipInfo[0].focus();
+            }
+
+
+            if(messageId === "사용 가능한 아이디입니다." 
+                    && messagePwd === "비밀번호가 일치합니다."){
+                alert(`${membershipInfo[2].value}님, 회원가입이 성공적으로 완료됐습니다^^`);
+                return;
+            }
+        });
+    </script>
+
+
+</body>
+</html>

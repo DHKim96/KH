@@ -1,0 +1,263 @@
+body{
+    font-size: 15px;
+    line-height: 1;
+    height: 100%;
+}
+
+article{
+    padding: 0;
+}
+
+#search-container{
+    margin-right: auto;
+    margin-left: auto;
+    width: 1136px;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-height: 1px;
+}
+
+.search-content{
+    border-top: none;
+    border-bottom: 1px solid #ededed;
+    padding: 0 0 50px;
+    margin: 40px 0 0;
+    position: relative;
+    height: 563px;
+}
+
+.search-content-header{
+    margin-bottom: 20px;
+    position: relative;
+    display: block;
+}
+
+.search-title{
+    display: block;
+}
+
+.search-title,
+.count{
+    font-size: 17px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.count{
+    color: #35c5f0;
+    margin-left: 5px;
+}
+
+.search-add{
+    display: block;
+    color: #35c5f0;
+    font-weight: 600;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.search-add:hover{
+    text-decoration: none;
+}
+
+.pm-sale {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px
+}
+
+.pm-sale-img {
+    border-radius: 5px;
+    width: 260px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.img-hover:hover {
+    -webkit-transform: scale(1.1, 1.1);
+    -moz-transform: scale(1.1, 1.1);
+    -o-transform: scale(1.1, 1.1);
+    -ms-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1);
+}
+
+.pm-sale-text {
+    width: 250px;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.pm-company {
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 5px;
+    color: #828c94;
+}
+
+.pm-title {
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+.pm-price {
+    margin-top: 5px;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.pm-color {
+    color: #35C5F0;
+}
+
+.pm-review {
+    margin-top: 5px;
+    font-weight: 700;
+}
+
+.pm-gray {
+    margin-top: 5px;
+    color: #828c94;
+}
+
+.button-scrap{
+    position: absolute;
+    background: none;
+    border: none;
+    right: 0px;
+    bottom: 5px;
+
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.pm-sale-img>button:hover {
+    opacity: 1;
+}
+
+
+#search-content-project{
+    border-bottom: none;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    margin-right: -10px;
+    margin-left: -10px;
+    height: 350px;
+}
+
+.search-project-content{
+    padding-right: 10px;
+    padding-left: 10px;
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    box-sizing: border-box;
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
+    height: 100%;
+}
+
+.search-project-item{
+    margin-bottom: 40px;
+    position: relative;
+    display: block;
+    height: 100%;
+}
+
+.search-project-item-img-wrap{
+    width: 100%;
+    position: relative;
+    height: 245px;
+}
+
+.search-project-item-img{
+    border-radius: 10px;
+    display: inline-block;
+    padding-bottom: 66.6666666667;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    height: 100%;
+}
+
+.search-project-item-img > img{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    object-fit: cover;
+}
+
+.search-project-item-info{
+    text-align: center;
+}
+
+.search-project-info-title{
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 17px;
+    color: #424242;
+    font-weight: 600;
+    max-height: 38px;
+    overflow: hidden;
+    line-height: 19px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.search-project-item-info-user{
+    margin-bottom: 11px;
+}
+
+.search-project-item-info-user > img{
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #757575;
+    display: inline-block;
+    border: 0;
+    vertical-align: 1px;
+}
+
+.search-project-item-info-user-nickname{
+    margin: 0 2px;
+    font-size: 13px;
+    color: #424242;
+    vertical-align: 3px;
+    text-align: center;
+}
+
+.search-project-item-info-status{
+    font-size: 13px;
+    color: #757575;
+    text-align: center;
+}
+
+.search-content-empty{
+    text-align: center;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-content-empty p{
+    font-size: 23px;
+    color: #424242;
+    margin: auto;
+}
+
+.search-content-empty img{
+    height: 280px;
+    width: 320px;
+}

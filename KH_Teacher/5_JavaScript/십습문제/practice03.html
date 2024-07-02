@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .none_pass{
+            color: red;
+        }
+        .pass{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend>회원가입</legend>
+            아이디 : <input type="text" id="user_id" onkeyup="checkId(this)"><span id="id_review"></span><br>
+            비밀번호 : <input type="password" id="user_pwd"><br>
+            비밀번호 확인 : <input type="password" id="check_pwd" onblur="checkPass()"><span id="pwd_review"></span><br>
+            이름 : <input type="text" id="user_name"><br>
+
+            <input type="submit" onclick="return validate();" value="회원가입">
+        </fieldset>
+    </form>
+
+    <script>
+        function checkId(idInput){
+            let idReview = document.getElementById('id_review');
+            if (idInput.value === 'user01') {
+                idReview.className = "none_pass";
+                idReview.innerText = '이미 존재하는 아이디입니다.';
+            } else {
+                idReview.className = "pass";
+                idReview.innerText = '사용가능한 아이디입니다.';
+            }
+        }   
+
+        function checkPass(){
+            let userPwd = document.getElementById('user_pwd');
+            let checkPwd = document.getElementById('check_pwd');
+            let pwdReview = document.getElementById('pwd_review');
+
+            if (userPwd.value === checkPwd.value) {
+                pwdReview.className = 'pass';
+                pwdReview.innerText = '비밀번호가 일치합니다.';
+            } else {
+                pwdReview.className = 'none_pass';
+                pwdReview.innerText = '비밀번호가 다릅니다.';
+            }
+        }  
+
+        function validate(){
+            let idReview = document.getElementById('id_review');
+            let pwdReview = document.getElementById('pwd_review');
+
+            if (idReview.classList.contains('none_pass')){
+                alert("사용할 수 없는 아이디입니다");
+
+                let idInput = document.getElementById('user_id');
+                idInput.focus();
+                
+                return false;
+            } else if(pwdReview.classList.contains('none_pass')){
+                alert("비밀번호가 일치하지 않습니다");
+                let userPwd = document.getElementById('user_pwd');
+                userPwd.focus();
+                return false;
+            }
+            
+            alert(document.getElementById('user_pwd').value + "님 회원가입이 성공적으로 완료되었습니다.^^");
+        }
+    </script>
+</body>
+</html>

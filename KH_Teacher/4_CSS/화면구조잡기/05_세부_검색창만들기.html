@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색창만들기</title>
+
+    <style>
+        div,form,input{
+            box-sizing: border-box; 
+            border: 1px solid red;
+        }
+        #header_2{
+            width: 600px;
+            height: 150px;
+            position: relative;
+        }
+
+        #search_form{
+            margin: auto;
+            width: 80%;
+            height: 20%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* 네개 다 극단으로 가려고해서 결국 가운데 배치 */
+        }
+
+        #search_form>input{height: 100%; float: left;}
+        #search_form>input:nth-child(1){
+            width: 80%;
+        }
+        #search_form>input:nth-child(2){
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+    <div id="header_2">
+
+        <form action="" id="search_form">
+            <input type="text" name="keyword">
+            <input type="submit" value="검색">
+        </form>
+
+    </div>
+</body>
+</html>

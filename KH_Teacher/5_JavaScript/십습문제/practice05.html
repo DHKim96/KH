@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        .box{
+            display: none;
+            background: lightgray;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Practice5</h1>
+    <fieldset align = 'center'>
+        <legend>검색할 항목을 선택하세요.</legend>
+        <input type="radio" name="category" value="title" onclick="showDiv(this);" id="title"><label
+            for="title">제목</label>&nbsp; &nbsp;
+        <input type="radio" name="category" value="date" onclick="showDiv(this);" id="date"><label
+            for="date">날짜</label>&nbsp; &nbsp;
+        <input type="radio" name="category" value="writer" onclick="showDiv(this);" id="writer"><label
+            for="writer">작성자</label>&nbsp; &nbsp;
+    </fieldset>
+
+    <br>
+
+    <div id="title_box" class="box">
+        <form method="post" action="">
+            <label> 검색할 제목을 입력하세요 : </label>
+            <br>
+            <input type="search" name="title" size="50"> &nbsp;
+            <input type="submit" value="검색" onclick="return false;">
+        </form>
+    </div>
+
+    <div id="date_box" class="box">
+        <form method="post" action="">
+            <label> 검색할 날짜를 선택하세요 : </label>
+            <br>
+            <input type="date" name="start"> -
+            <input type="date" name="end"> &nbsp;
+            <input type="submit" value="검색" onclick="return false;">
+        </form>
+    </div>
+    <div id="writer_box" class="box">
+        <form method="post" action="">
+            <label> 검색할 작성자 아이디를 입력하세요 : </label>
+            <br>
+            <input type="search" name="writer" size="25"> &nbsp;
+            <input type="submit" value="검색" onclick="return false;">
+        </form>
+    </div>
+
+    <script>
+        function showDiv(element) {
+
+            let boxList = document.getElementsByClassName("box");
+            for (let i = 0; i < boxList.length; i++) {
+                boxList[i].style.display = "none";
+            }
+            let box = document.getElementById(element.value + "_box");
+            box.style.display = "block";
+
+            //jquery로 하면
+            $(".box").hide(); // 모든 클래스가 box인 요소를 숨김
+            $("#" + element.value + "_box").show(); // 선택한 요소를 보여줌
+
+
+        }
+    </script>
+</body>
+
+</html>

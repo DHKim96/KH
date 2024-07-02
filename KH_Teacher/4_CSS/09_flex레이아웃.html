@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex</title>
+    <style>
+        .container{
+            border: 3px solid black;
+            display: flex;
+            flex-direction: row
+            /* flex-direction: column(수직) | column-reverse | row(수평) | row-reverse */
+            /* 자식요소들을 정렬시 주축을 어떤방향으로 할것인가? */
+        }
+        .flex-item{
+            color: black;
+            font-size: 50px;
+            padding: 24px;
+            text-align: center;
+            border: 1px solid red;
+            width: 100px;
+        }
+        .item1{background: yellow;}
+        .item2{background: green;}
+        .item3{background: red;}
+        .item4{background: paleturquoise;}
+        .item5{background: gray;}
+        .item6{background: blue;}
+
+        .container2{
+            border: 3px solid black;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            /* flex-direction: column | row */
+        }
+        .flex-item2{
+            color: black;
+            font-size: 50px;
+            padding: 24px;
+            text-align: center;
+            border: 1px solid red;
+            width: 100px
+        }
+
+        .container3{
+            border: 3px solid black;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 800px;
+            justify-content: space-between;
+            /* 주축의 정렬을 어떻게 할것인가? */
+            /*flex-direction: row일때 flex-end 좌우기준 뒤쪽정렬 
+                                      flex-start 좌우기준 앞쪽부터 정렬*/
+            align-items: flex-start; 
+            /* 교차축의 정렬을 어떻게 할것인가? */
+            /*flex-direction: row일때 flex-end 상하기준 뒤쪽정렬 
+                                      flex-start 상하기준 앞쪽부터 정렬*/
+        }
+
+        .flex-item3{
+            color: black;
+            font-size: 50px;
+            padding: 24px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flex레이아웃</h1>
+    <p>
+        웹페이지 레이아웃을 효율적으로 구성하기위한 기술. flexbox를 사용하면
+        요소들을 부모컨테이너 내에서 유연하게 정렬하고 배치할 수 있다.
+    </p>
+
+    <div class="container">
+        <div class="flex-item item1" style="flex: 1; max-width: 300px;">1번</div>
+        <div class="flex-item item2">2번</div>
+        <div class="flex-item item3">3번</div>
+    </div>
+
+    <br>
+    <hr>
+    <br>
+
+    <div class="container2">
+        <div class="flex-item2 item1">1번</div>
+        <div class="flex-item2 item2">2번</div>
+        <div class="flex-item2 item3">3번</div>
+        <div class="flex-item2 item4">4번</div>
+        <div class="flex-item2 item5">5번</div>
+        <div class="flex-item2 item6">6번</div>
+    </div>
+
+    <br>
+    <hr>
+    <br>
+
+    <div class="container3">
+        <div class="flex-item3 item1">1번</div>
+        <div class="flex-item3 item2">2번</div>
+        <div class="flex-item3 item3">3번</div>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--제이쿼리 라이브러리 추가-->
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+<body>
+	<p>
+        AJAX <br>
+        서버로부터 데이터를 가져와 전체 페이지를 새로고침하지 않고 일부만 로드할 수 있게 하는 기법 <br>
+        우리가 기존에 사용하던 a 태그 및 form submit 요청 방식은 "동기화 요청"임 (응답페이지가 돌아와야만 )
+        
+        > 동기식 (a, form submit)
+        <ul>
+            <li>요청처리 후 해당하는 응답페이지가 돌아와야 다음 작업 가능</li>
+            <li>서버에 요청한 결과까지의 시간이 지연되면 무장적 기다려야 함(흰 페이지로 보임)</li>
+            <li>전체페이지를 응답해주기 때문에 기본적으로 플리커 현상 발생</li>
+        </ul>
+
+        >비동기식 (ajax)
+        <ul>
+            <li>현재 페이지를 그대로 유지하면서 중간마다 추가적으로 필요한 정보 요청 가능</li>
+            <li>요청 보냈다고해서 다른 페이지로 넘어가지 않음</li>
+            <li>요청을 보내고도 그에 해당하는 응답이 돌아오기 전에 다른 작업 진행 가능</li>
+        </ul>
+        ex) 실시간 검색어, 검색어 자동 완성, 아이디 중복체크, 찜하기/해제, 팔로우/언팔, 추천, 댓글, 무한스크롤(인스타 등)
+        
+        <br><br>
+
+        *비동기식 단점 <br>
+            - 현재 페이지에 지속적으로 리소스 쌓임 => 페이지가 느려질 수 있음 <br>
+            - 에러 발생 시 디버깅 어려움 <br>
+            - 요청 처리 후 돌아온 응답 데이터 통해 현재 페이지에 새로운 요소 만들어서 붙여줘야 함(=> DOM을 개발자가 직접 컨트롤해야함)
+        
+        *AJAX 구현 => 순수 javascript 방식(XmlHttpRequest) vs jquery(ajax; 코드 간결, 사용하기 쉬움)
+    
+       <pre>
+		* jQuery방식
+		
+		$.ajax({
+			속성 : 값,
+			속성 : 값,
+			속성 : 값,
+			...
+		});
+		
+		*주요속성
+		-url: 요청할 url(필수속성)
+		-type|mehod : 요청전송방식(get/post)
+		-data: 요청시 전달할 값
+		-success: ajax요청 성공시 실행할 함수정의
+		-error : ajax요청 실패시 실행할 함수정의
+		-complete : ajax요청 성공여부와 상관없이 무조건 실행할 함수
+		
+		*부가적인 속성
+		-async: 서버와의 비동기 처리 방식 설정 여부(기본값 true)
+		-contentType: request의 데이터 인코딩 방식 정의(보내는 쪽의 데이터 인코딩)
+		-dataType: 서버에서 response로 오는 데이터의 데이터 형 설정, 값이 없다면 스마트하게 판단함
+					xml, json, script, html, text
+		-accept: 파라미터의 타입을 설정(사용자 특화 된 파라미터 타입 설정가능)
+		-beforeSend: ajax요청을 하기전 실핸되는 이벤트 callback 함수(데이터 가공및 header관련 설정)
+		-cache: 요청밒 결과값을 scope에서 갖고 있지 않도록 하는 것 (기본값true)
+		-contents: jQuery에서 response의 데이터를 파싱하는 방식 정의
+		-context: ajax메소드 내 모든 영역에서 파싱방식 정의
+		-crossDomain: 타 도메인 호출 가능 여부 설정(기본값 false)
+		-dataFilter: response를 받았을 때 정상적인 값을 return할 수 있도록 데이터와 데이터타입 설정
+		-timeout: 서버요청시 응답대기시간
+    </pre>
+    </p>
+    
+    <h3> 버튼 클릭 시 post 방식으로 서버에 여러 개의 데이터 전송 및 응답</h3>
+
+    이름 : <input type="text" id="input1">
+
+    나이 : <input type="number" id="input2">
+
+    <button onclick="test()">전송</button>
+
+    <script>
+        
+        function test(){
+            // http://localhost:8001/kh/jqAjax.do
+            // name 값과 age 값을 보내 post 요청
+            $.ajax({
+                url: "http://localhost:8001/kh/jqAjax.do",
+                type: "post",
+                data: {
+                    name: $('#input1').val(),
+                    age: document.getElementById('input2').value
+                },
+                success: function(res){
+                    console.log("응답 : ")
+                    console.log(JSON.parse(res))
+                },
+                error: function(){
+                    console.log("요청 실패")
+                }
+            });
+        }
+
+    </script>
+
+</body>
+</html>

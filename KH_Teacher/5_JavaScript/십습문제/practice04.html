@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>practice4</title>
+<style>
+    #area{
+        border:1px solid black;
+        height: 300px;
+        width: 500px;
+    }
+</style>
+</head>
+<body>
+<h1> Practice4 </h1>
+<fieldset>
+    <legend>구매정보</legend>
+    <ul>
+        <li>구매자 : <input type="text" placeholder="구매자의 이름을 입력하세요."></li>
+        <li>상품명 : <input type="text" placeholder="구매 상품 명을 입력하세요"></li>
+        <li>가격 : <input type="number" placeholder="구매 가격을 입력하세요."></li>
+        <li>구매 수량 : <input type="number" min="10" max="100" step="10" placeholder="최소 10"></li>
+        <li>남품 등급 : <input type="range" min="1" max="9" step="2" value="1"></li>
+        <li>기타 사항 : <textarea></textarea>
+    </ul>
+</fieldset>
+<br>
+<br>
+<button onclick="textPrint()">입력값 출력하기</button>
+
+<div id = "area"></div>
+<script>
+    function textPrint(){
+        //비우기
+        const area = document.getElementById('area');
+        area.innerHTML = "";
+
+        let liArr = document.getElementsByTagName('li');
+      
+        for (let item of liArr) {
+            area.innerHTML += (item.innerText + item.childNodes[1].value + "<br>");
+        }
+    }
+</script>
+</body>
+</html>

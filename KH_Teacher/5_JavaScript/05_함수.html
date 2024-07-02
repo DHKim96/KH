@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area{
+            border: 1px solid black;
+            width: 500px;
+            height: 100px;
+            background-color: gainsboro;
+        }
+    </style>
+</head>
+<body>
+    <h1>함수(function)</h1>
+
+    <h3 onclick="test1();">*선언적 함수</h3>
+    <pre>
+        function 함수명([매개변수, 매개변수...]){
+            해당함수 호출시 실행할 코드;
+
+            [return 결과값;]
+        }
+    </pre>
+
+    <button id="test1" onclick="test1();">실행확인</button>
+    <div id="area1" class="area"></div>
+    <script>
+        function test1(){
+            document.querySelector("#area1").innerHTML += "test1() 함수 실행됨<br>";
+        }
+    </script>
+
+    <br>
+
+    <h3>*익명함수(이름이 없는 함수)</h3>
+    <pre>
+        변수 | 속성 = function([매개변수, 매개변수...]){
+            해당함수 호출시 실행할 코드;
+
+            [return 결과값;]
+        }
+
+        특정 변수나 속성에 대입되는 함수 제시시 주로 사용됨
+        (주로 이벤트 핸들러(이벤트 발생시 실행할 함수)작성시 사용됨)
+    </pre>
+    <button id="btn">실행확인</button>
+    <div id="area2" class="area"></div>
+    <script>
+        const btn = document.getElementById("btn"); // button요소 객체
+        btn.onclick = function(){ //익명함수 => 이름이 없어서 직접 호출 불가
+            // 이벤트 속성에 대입되는 function == 이벤트 핸들러
+
+            document.getElementById("area2").innerHTML += "이벤트 핸들러를 통해 실핸됨 <br>";
+        }
+    </script>
+
+    <hr>
+
+    <h2>함수의 매개변수</h2>
+
+    <button onclick="test2('안녕하세요');">실행확인</button>
+    <button onclick="test2(10);">실행확인</button>
+    <button onclick="test2([1,2,3]);">실행확인</button>
+    <button onclick="test2(true);">실행확인</button>
+
+    <br>
+
+    <button onclick="test2(prompt('이름을 입력해주세요'));">실행확인</button>
+    <button onclick="test2('안녕하세요', '반값습니다.');">실행확인</button>
+    <button onclick="test2(10, true, '안녕');">실행확인</button>
+
+    <div id="area3" class="area"></div>
+    <script>
+        function test2(value, value2){
+            console.log(arguments); // 함수 호출시 전달되는 값은 내부적으로 arguments 배열에 담김
+            document.getElementById("area3").innerHTML = value;
+        }
+    </script>
+
+    <!-- this : 현재 요소 객체 -->
+    <button onclick="test3(this.innerHTML);">1</button>
+    <button onclick="test3(this.innerHTML);">2</button>
+    <input type="button" value="3" onclick="test3(this.value);">
+    <button id="btn4" onclick="test3(this.innerHTML);">4</button>
+    <script>
+        function test3(a){
+            console.log(a);
+        }
+    </script>
+    
+    <button onclick="test4(this);">클릭</button>
+
+    <script>
+        function test4(el){
+            if (el.style.background !== "red") {
+                el.style.background = "red";
+                el.innerHTML = "클릭됨";
+            } else {
+                el.style.background = "white";
+                el.innerHTML = "클릭";
+            }
+        }
+    </script>
+
+    <hr>
+    <br>
+
+    <h2>함수의 리턴</h2>
+    <h3>*일반적인 값 리턴</h3>
+
+    <button onclick="test5()">실행</button>
+    <div id="area5" class="area"></div>
+    
+    <script>
+        function ran(){
+            const random = parseInt(Math.random() * 100 + 1);
+            return random;
+        }
+        
+        function test5(){
+            document.querySelector("#area5").innerHTML += ("랜덤값 :" + ran() + "<br>");
+        }
+    </script>
+
+    <br>
+
+    <h3>*함수를 리턴</h3>
+    이름 : <input type="text" id="userName">
+    <button onclick="test6()()">실행</button>
+    
+    <script>
+        function test6(){
+            const inputEl = document.getElementById("userName");
+            let alFunk = function(){
+                alert(inputEl.value);
+            }
+
+            return alFunk;
+        }
+
+        customerCallback({id: "user1", pwd: "1234"}, function(result){
+            console.log(result);
+        })
+        customerCallback({id: "user1", pwd: "1234"}, function(result){
+            console.log("sd");
+        })
+        customerCallback({id: "user1", pwd: "1234"}, function(result){
+            console.log(result.name);
+        })
+
+
+        function customerCallback(data, callback){
+            //data를 서버로 보낸
+            // 시간지연~~~~~~~
+            //결과도착 -> result
+            callback(result)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice4</title>
+    <style>
+        .long {
+            width: 200px;
+        }
+
+        form {
+            width: 500px;
+        }
+
+        #result {
+            border: 1px solid black;
+            width: 400px;
+            height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Practice4</h1>
+    <form action="">
+        <fieldset>
+            <legend>구매 정보</legend>
+            <ul>
+                <li>
+                    구매자 : <input type="text" placeholder="구매자의 이름을 입력하세요" class="long" id="name" name="input">
+                </li>
+                <li>
+                    상품명 : <input type="text" placeholder="구매 상품 명을 입력하세요" class="long" id="product" name="input">
+                </li>
+                <li>
+                    가격 : <input type="number" placeholder="구매 가격을 입력하세요" class="long" id="price" name="input">
+                </li>
+                <li>
+                    구매 수량 : <input type="number" placeholder="최소 10" min="10" max="100" style="width: 70px;" id="amount" name="input">
+                </li>
+                <li>
+                    납품 등급 : <input type="range" min="1" max="9" step="2" id="grade" name="input">
+                </li>
+                <li>
+                    기타 사항 : <textarea id="others" cols="30" rows="5" name="input"></textarea>
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+    <br>
+    <button onclick="print()">입력 값 출력하기</button>
+    <br><br>
+    <div id="result"></div>
+    <script>
+        function print() {
+            const inputArr = document.getElementsByName("input");
+            const result = document.getElementById("result");
+            
+            result.innerHTML += `구매자 명 : ${inputArr[0].value}님<br>`;
+            result.innerHTML += `상품 명 : ${inputArr[1].value}<br>`;
+            result.innerHTML += `가격 : ${inputArr[2].value}만원<br>`;
+            result.innerHTML += `구매 수량 : ${inputArr[3].value}개<br>`;
+            result.innerHTML += `납품등급 : ${inputArr[4].value}등급<br>`;
+            result.innerHTML += `기타사항 : ${inputArr[5].value}`;
+        }
+    </script>
+</body>
+
+</html>

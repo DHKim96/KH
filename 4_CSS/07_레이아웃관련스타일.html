@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레이아웃스타일</title>
+    <style>
+        .size-test{border: 1px solid red;}
+        #test1{width: 400px; height: 200px} /*브라우저창이 고정 크기보다 작아지지 않음*/
+        #test2{width: 50%; height:  150px;}
+
+        .red{background-color: red;}
+        .yellow{background-color: yellow;}
+        .pink{background: pink;}
+
+        .display-test{
+            border: 1px solid black;
+            width: 150px;
+            height: 150px;
+        }/*크기를 정해주지 않으면 인라인블록은 기본적으로 인라인 요소*/
+
+        .inline{display: inline;}
+        .inline-block{display: inline-block;}
+        .block{display: block;}
+    </style>
+</head>
+<body>
+  <!--
+    블럭 요소
+        : 한 줄로 영역을 차지하고 있는 요소.
+          자동으로 줄바꿈 발생.
+          div, p, pre, h 등.
+          
+    인라인 요소
+        : content 부분만 영역 차지하고 있는 요소.
+          줄바꿈 x. 바로 옆으로 배치.
+          span, label, input, img, 글자 관련 태그
+
+    * 요소 영역
+        : content영역 + padding영역 + border영역
+      요소 바깥쪽 영역
+        : margin영역
+-->
+
+    <h1>레이아웃 관련 스타일</h1>
+    <h1>width, height</h1>
+    <p>기본적으로 내용을 차지하는 content 영역의 가로, 세로 길이를 조절하는 데 사용하는 스타일 속성</p>
+
+    <h4>고정크기(px)</h4>
+    <div id="test1" class="size-test"></div>
+    <!--버튼 등은 변하면 안되기 때문에 고정 크기-->
+    <h4>가변크기(px)</h4>
+    <div id="test2" class="size-test"></div>
+
+    <h3>display : 화면 배치 방법 변경</h3>
+    <pre>
+        선택자{
+            display: inline | block | inline-block
+        }
+        <!--
+        inline-block
+            : 기본적으로 인라인 요소.
+              본디 인라인요소는 width, height 조정 x
+              인라인 블록 요소는 인라인이지만 width, height 조정 가능-->
+    </pre>
+
+    <h4>display : inline</h4>
+    <div class="display-test inline red">첫번째</div>
+    <div class="display-test inline yellow">두번째</div>
+    <div class="display-test inline pink">세번째</div>
+
+    <h4>display : inline-block</h4>
+    <div class="display-test inline-block red">첫번째</div>
+    <div class="display-test inline-block yellow">두번째</div>
+    <div class="display-test inline-block pink">세번째</div>
+
+    <h4>display : block</h4>
+    <div class="display-test block red">첫번째</div>
+    <div class="display-test block yellow">두번째</div>
+    <div class="display-test block pink">세번째</div>
+
+    <br><br><br><br><br>
+    
+
+</body>
+</html>

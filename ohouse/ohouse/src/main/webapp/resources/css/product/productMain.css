@@ -1,0 +1,101 @@
+#pm-content {
+    width: 1136px;
+}
+
+.pm-sale {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pm-sale-img {
+    border-radius: 5px;
+    width: 260px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.pm-sale img {
+    border-radius: 5px;
+    -webkit-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    -o-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+    -ms-transition: all 0.1s ease;
+}
+
+.pm-sale img:hover {
+    -webkit-transform: scale(1.1, 1.1);
+    -moz-transform: scale(1.1, 1.1);
+    -o-transform: scale(1.1, 1.1);
+    -ms-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1);
+}
+
+.pm-sale-text {
+    width: 250px;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.pm-category {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.pm-add {
+    color: #ff7777;
+    font-weight: 700;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.pm-company {
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 5px;
+    color: #828c94;
+}
+
+.pm-title {
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+.pm-price {
+    margin-top: 5px;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.pm-color {
+    color: #35C5F0;
+}
+
+.pm-review {
+    margin-top: 5px;
+    font-weight: 700;
+}
+
+.pm-gray {
+    margin-top: 5px;
+    color: #828c94;
+}
+
+.pm-sale-img>button {
+    position: absolute;
+    background: none;
+    border: none;
+    right: 0px;
+    bottom: 5px;
+
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.pm-sale-img>button:hover {
+    opacity: 1;
+}

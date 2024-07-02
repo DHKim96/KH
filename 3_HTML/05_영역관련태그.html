@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>영역관련태그</title> <!-- html 에서 가장 중요한 부분 -->
+
+        <style>
+            div{
+                width: 200px;
+                height: 200px;
+                border: 1px solid black;
+            }
+            span{
+                border: 1px solid black;
+                width: 200px;
+                height: 200px;
+                /*인라인 요소에는 대부분 가로, 세로 길이 지정 불가*/
+            }
+        </style>
+    </head>
+    <body>
+        <!--
+            * 블럭 요소
+                : 한 줄 단위로 영역 차지
+                  줄바꿈이 적용되어 이미 존재하는 태그의 다음 줄에 다음 영역이 잡힘
+                  (p, pre, "div"(가장 중요), ...)
+            * 인라인 요소
+                : content(내용) 영역에 해당하는 부분만 영역을 차지하는 요소
+                  줄바꿈이 적용되지 않아 다음 영역이 바로 옆으로 잡힘
+                  (b, mark, s, img, "span", ...)
+        --> 
+        
+        <h1>영역관련태그</h1>
+        <h2>div 태그와 span 태그의 차이점 1 : 줄바꿈 적용</h2>
+        <h3>div 태그</h3>
+        <p>div 태그는 블럭 요소로 한 줄 단위로 영역을 차지(이미 존재하는 태그 다음 줄에 영역이 잡힘)</p>
+
+        <div style="background: red;">첫 번째 영역</div>
+        <div style="background: orange;">두 번째 영역</div>
+        <div style="background: yellow;">세 번째 영역</div>
+    
+        <h3>span 태그</h3>
+        <p>span 태그는 인라인 요소로 content 영역만 차지(줄바꿈x 옆으로 영역이 잡힘)</p>
+        
+        <span style="background: red;">첫 번째 영역</span>
+        <span style="background: orange;">두 번째 영역</span>
+        <span style="background: yellow;">세 번째 영역</span>
+    
+        <h2>div 태그와 span 태그의 차이점2 : 영역지정방식</h2>
+        
+        <h3>div 태그 : 사각형 박스로 영역 지정</h3>
+        <div style="width: auto; height: auto;">
+            한국대학신문 김의진 기자] 교육부가 올해 ‘전문대학 혁신지원사업’ 연차평가 결과에 따라 지급하는 인센티브 비중을 대폭 늘린다. 또한 연차평가 시 ‘교육혁신’ 전략 영역의 중요도가 높아진다. 다만 교육계에서 요구해왔던 인건비·경상비 사용 한도를 사업비의 50% 수준으로 인상할 필요가 있다는 의견은 받아들여지지 않았다.
+
+            5일 교육계에 따르면 교육부는 이 같은 내용을 핵심 골자로 포함한 ‘2024년 전문대학 혁신지원사업(일반재정지원) 기본계획’을 지난달 중순 일선 대학 사업단 책임자 등에게 안내했다.
+        </div>
+        
+        <br><br><br>
+
+        <h3>span 태그 : 문장 단위로 영역 지정</h3>
+        <span>한국대학신문 김의진 기자] 교육부가 올해 ‘전문대학 혁신지원사업’ 연차평가 결과에 따라 지급하는 인센티브 비중을 대폭 늘린다. 또한 연차평가 시 ‘교육혁신’ 전략 영역의 중요도가 높아진다. 다만 교육계에서 요구해왔던 인건비·경상비 사용 한도를 사업비의 50% 수준으로 인상할 필요가 있다는 의견은 받아들여지지 않았다.
+
+            5일 교육계에 따르면 교육부는 이 같은 내용을 핵심 골자로 포함한 ‘2024년 전문대학 혁신지원사업(일반재정지원) 기본계획’을 지난달 중순 일선 대학 사업단 책임자 등에게 안내했다.
+        </span>
+
+        <hr>
+
+        <h1>iframe</h1>
+        <p>웹 문서 안에 다른 웹페이지를 추가하는 태그(인라인요소)</p>
+
+        <iframe src="04_이미지및멀티미디어.html" width="600" height="800"></iframe>
+
+        <!-- 유튜브 동영상 공유하기에서 url 받아서 해보기-->
+
+    </body>
+</html>

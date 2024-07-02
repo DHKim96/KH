@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레이아웃관련스타일2</title>
+    <style>
+        .positioning{border: 1px solid black;}
+        .outer{position: relative;} /*자식의 기준이 됨*/
+
+        #first{
+            width: 300px;
+            height: 300px;
+            background-color: yellow;
+        }
+
+        #second{
+            width: 200px;
+            height: 200px;
+            background-color: yellowgreen;
+            position: absolute; /*내가 원하는 위치에 놓기 위함*/
+            left: 50px;
+            top: 50px; /*마이너스 값도 가능 => 부모 영역을 벗어남*/
+            /*부모의 기준이 없으면 화면 전체에 대한 절대값으로 들어감*/
+            /*현 위치(relative로 설정된 부모 요소를 통해)에서 얼만큼 떨어져 위치할 지 지정 가능*/
+        }
+
+        #third{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+        }
+
+        #fixed-area{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+        }
+
+        .vis-test{
+            width: 100px;
+            height: 100px;
+        }
+
+        .float-test{
+            border: 1px solid black;
+            width: 70px;
+            height: 30px;
+            float: right;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <h1>배치 관련 스타일</h1>
+    <h3>position : 상대위치(relative)와 절대위치(absolute)</h3>
+    <div class="outer">
+        <div class="positioning" id="first">첫번째자식</div>
+        <div class="positioning" id="second">두번째자식</div>
+        <div class="positioning" id="third">세번째자식</div>
+
+    <h3>position: 고정위치(fixed)</h3>
+    <!--ex. 채널톡 표시. 브라우저창에 맞춰져 화면의 크기에 상관없기 항상 브라우저상에 위치-->
+    <div class="positioning" id="fixed-area"></div>
+
+    </div>
+
+    
+
+    <hr>
+
+    <h3>visivility: 특정 요소를 보이거나 보이지 않게 하는 스타일 속성</h3>
+
+    <div class="vis-test" style="background-color: red; display: none;">첫번째 영역</div> 
+    <!--영역이 같이 사라짐. 가장 많이 사용.-->
+    <div class="vis-test" style="background-color: green; visibility: hidden;">두번째 영역</div>
+    <!--영역 사라지지 않음-->
+    <div class="vis-test" style="background-color: yellow; opacity: 0;">세번째 영역</div>
+    <!--영역 사라지지 않음-->
+    
+    <hr>
+
+
+    <h3>float</h3>
+    <p>페이지 내의 요소들을 화면으로부터 띄워서 왼쪽 또는 오른쪽으로 배치하는 스타일 속성</p>
+
+    <div class="float-test">요소1</div>
+    <div class="float-test">요소2</div>
+    <div class="float-test">요소3</div>
+    <div class="float-test">요소4</div>
+    <div class="float-test">요소5</div>
+
+    <hr>
+
+    <br clear="both"> <!--띄어진 요소들을 왼쪽 또는 오른쪽에 배치해서 정리해줌-->
+    <!--display:inline과 비슷하지만 이건 띄어서 정리-->
+
+    <hr> <!--화면 위에 겹치지기 때문에 요소들에 hr 수평선이 생김-->
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.kh.boot.mapper.BoardMapper">
+<!--   id는 BoardMapper객체의 메서드와 연결된다. -->
+    <insert id="create">
+        INSERT
+        INTO BOARD(
+                   title,
+                   contents,
+                   user_id,
+                   file_name,
+                   pwd,
+                   create_at,
+                   update_at
+        )
+        VALUES(
+                #{board.title},
+                #{board.contents},
+                #{board.userId},
+                #{board.fileName},
+                #{board.pwd},
+                CURRENT_TIMESTAMP,
+                CURRENT_TIMESTAMP
+               )
+    </insert>
+</mapper>

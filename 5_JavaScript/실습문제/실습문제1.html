@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #area1{
+            width: 100%;
+            height: 100px;
+            border: 1px solid red;
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        체크 박스 선택 후 “카테고리 선택“을 누르면 하단 네모에 선택한 카테고리 출력
+        이 때, “전체 선택“ 체크 박스 선택 시 모든 카테고리가 선택 되며, 선택 해제 시 모두 선택 해제 됨
+        또한 카테고리 체크박스를 전부 선택하면 “전체 선택“ 체크 박스가 선택되고 
+        하나라도 선택이 되어있지 않으면 “전체 선택“ 체크 박스는 선택 해제 됨.
+    </p>
+    <form action="">
+        <fieldset>
+            <legend>취미</legend>
+            <input type="checkbox" name="hobby" value="전체선택" id="all" onchange="allCheck()">
+            <label for="all">전체선택</label>
+            <input type="checkbox" name="hobby" value="종합" id="total" onchange="checkBoxTrigger();">
+            <label for="total">종합</label>
+            <input type="checkbox" name="hobby" value="소설" id="novel" onchange="checkBoxTrigger();">
+            <label for="novel">소설</label>
+            <input type="checkbox" name="hobby" value="시/에세이" id="poem" onchange="checkBoxTrigger();">
+            <label for="poem">시/에세이</label>
+            <input type="checkbox" name="hobby" value="경제/경영" id="economy" onchange="checkBoxTrigger();">
+            <label for="economy">경제/경영</label>
+            <input type="checkbox" name="hobby" value="자기계발" id="self-improvement" onchange="checkBoxTrigger();">
+            <label for="self-improvement">자기계발</label>
+            <input type="checkbox" name="hobby" value="아동" id="children" onchange="checkBoxTrigger();">
+            <label for="children">아동</label> <br>
+            <input type="checkbox" name="hobby" value="여행" id="journey" onchange="checkBoxTrigger();">
+            <label for="journey">여행</label>
+            <input type="checkbox" name="hobby" value="과학" id="science" onchange="checkBoxTrigger();">
+            <label for="science">과학</label>
+            <input type="checkbox" name="hobby" value="역사/문화" id="history" onchange="checkBoxTrigger();">
+            <label for="history">역사/문화</label>
+            <input type="checkbox" name="hobby" value="외국어" id="foreign" onchange="checkBoxTrigger();">
+            <label for="foreign">외국어</label>
+            <input type="checkbox" name="hobby" value="컴퓨터" id="computer" onchange="checkBoxTrigger();">
+            <label for="computer">컴퓨터</label>
+            <input type="checkbox" name="hobby" value="만화" id="comic" onchange="checkBoxTrigger();">
+            <label for="comic">만화</label>
+        </fieldset>
+    </form>
+    <br> <br>
+    <button onclick="accessName();">카테고리 선택</button>
+    <div id="area1" class="area"></div>
+    <script>
+        function accessName(){
+            let hobbyList = document.getElementsByName("hobby");
+            console.log(hobbyList);
+
+            let area = document.getElementById("area1");
+            area.innerHTML = "";
+
+            for(let checkBox of hobbyList){
+                let count = 0;
+                if(checkBox.value == "전체선택"){
+                    continue;
+                }
+                console.log(checkBox);
+                if(checkBox.checked){
+                    area.innerHTML += (checkBox.value + ", ");
+                }
+            }
+        }
+
+        
+        function allCheck(){
+            let allCheckBox = document.getElementById("all");
+            console.log(allCheckBox.checked);
+
+            let hobbyList = document.getElementsByName("hobby");
+
+            for(let checkBox of hobbyList){
+                checkBox.checked = allCheckBox.checked;
+            }
+        }
+        
+        function checkBoxTrigger(){
+            let allCheck = true;
+
+            let hobbyList = document.getElementsByName("hobby");
+
+            for(let checkBox of hobbyList){
+                if(checkBox.value == "전체선택"){
+                    continue;
+                }
+                //하나라도 체크되지 않았으면 전체 체크는 false
+                if(!checkBox.checked){
+                    allCheck = false;
+                    break;
+                } 
+            }
+
+            let allCheckBox = document.getElementById("all");
+            allCheckBox.checked = allCheck; // true, false
+        }
+    </script>
+
+
+
+</body>
+</html>

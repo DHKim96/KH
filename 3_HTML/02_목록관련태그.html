@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--!치고 엔터치면 기본 구조 세팅된다.
+    다만 언어가 영어로 됐기에 ko로 변경해줘야함-->
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- viewport 해야 반응형 웹처럼 작용-->
+        <title>목록관련태그</title>
+    </head>
+    <body>
+        <li>목록1</li>
+        <li>목록2</li>
+
+        <h1>ul : 순서 없는 목록 태그</h1>
+        <!-- unorderlist-->
+        <ul>
+            <!-- li*4 하면 4개 만들어짐-->
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>jQuery</li>
+        </ul>
+
+        <ul>
+            <li>HTML</li>
+                <ul>
+                    <li>글자관련태그</li>
+                    <li>목록관련태그</li>
+                </ul>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>jQuery</li>
+        </ul>
+
+        <hr>
+
+        <h1>ol : 순서 있는 목록 태그</h1>
+        <!--orderlist-->
+
+        <ol>
+            <li>HTML</li>
+                <ol>
+                    <li>글자관련태그</li>
+                    <li>목록관련태그</li>
+                </ol>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>jQuery</li>
+        </ol>
+        <!-- 기본적으로 1부터 시작하는 숫자값-->
+        <!--type 속성을 이용해서 변경 가능(속성값 : 숫자, A,a,i,l로마자1)-->
+        <!--start 속성 이용해서 시작값 변경 가능-->
+        <!--reversed 속성 이용해서 역순 표기 가능(속성명 자체가 속성값이라 그대로 쓰면 됨
+            원래는 reveresd = reversed 가 돼야하지만)-->
+        <ol type="i" start="5" reversed>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>jQuery</li>
+        </ol>
+
+        <br>
+        <hr>
+
+        <h1>dl : 설명과 관련된 목록 태그</h1>
+        <dl>
+            <dt>제목을 입력하는 태그</dt>
+            <dd>설명을 입력하는 태그</dd>
+            <dt>제목을 입력하는 태그</dt>
+            <dd>설명을 입력하는 태그</dd>
+            <dt>제목을 입력하는 태그</dt>
+            <dd>설명을 입력하는 태그</dd>
+        </dl>
+        <!-- 현업에서는 ul ol li 태그로 다 표현돼기에 dl은 잘 쓰지 않음 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+</html>

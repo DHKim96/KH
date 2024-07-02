@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex레이아웃</title>
+    <style>
+        .container{
+            border: 3px solid black;
+            display: flex;
+            flex-direction: column;
+            flex-direction: row;
+        }
+
+        .flex-item{
+            color: black;
+            font-size: 50px;
+            padding: 24px;
+            text-align: center;
+            border: 1px solid red;
+            width: 100px;
+        }
+
+        .item1{
+            background: yellow;
+        }
+
+        .item2{
+            background: green;
+        }
+
+        .item3{
+            background-color: red;
+        }
+        .item4{
+            background: yellowgreen;
+        }
+
+        .item5{
+            background: wheat;
+        }
+
+        .item6{
+            background-color: purple;
+        }
+
+        .container2{
+            border: 3px solid black;
+            display: flex;
+            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        /*
+            flex-direction
+                : column(수직) | row(수평) | coulumn-reverse | row-reverse
+                  자식 요소들을 정렬 시 주축을 어떤 방향으로 지향할 것인가?
+
+            flex-wrap
+                : 줄바꿈
+
+        */
+
+        .flex-item2{
+            color: black;
+            font-size: 50px;
+            padding: 24px;
+            text-align: center;
+            border: 1px solid red;
+            width: calc(50%-50px);
+        }
+
+        .container3{
+            border: 3px solid black;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 800px;
+            justify-content: flex-end;
+            justify-content: space-between;
+            /*
+                justify-content
+                    : 주축의 정렬을 어떻게 할 것인가?
+            */
+            align-items: flex-start;
+            align-items: flex-end;
+            /*
+                align-items
+                    : 교차축의 정렬을 어떻게 할 것인가?
+                      row일때 flex-end 면 상하기준 뒤쪽 정렬*
+                              flex-start면 상하기준 앞쪽부터 정렬*/
+            
+            /*flex-direction : row일때 flex-end 좌우 기준 뒤쪽 정렬
+                            flex-start 좌우기준 앞쪽부터 정렬*/
+            
+        }
+
+        .flex-item3{
+            color: black;
+            font-size: 50px;
+            padding: 24px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>flex레이아웃</h1>
+    <p>웹페이지 레이아웃을 효율적으로 구성하기 위한 기술. flexbox를 사용하면 요소들을 부모컨테이너 내에서 유연하게 정렬하고 배치 가능</p>
+    <div class="container">
+        <div class="flex-item item1" style="flex: 1; max-width: 300px;">1번</div>
+        <div class="flex-item item2" >2번</div>
+        <div class="flex-item item3">3번</div>
+    </div>
+
+    <hr>
+
+    <div class="container2">
+        <div class="flex-item2 item1">1번</div>
+        <div class="flex-item2 item2">2번</div>
+        <div class="flex-item2 item3">3번</div>
+        <div class="flex-item2 item4">4번</div>
+        <div class="flex-item2 item5">5번</div>
+        <div class="flex-item2 item6">6번</div>
+    </div>
+
+    <div class="container3">
+        <div class="flex-item3 item1">1번</div>
+        <div class="flex-item3 item2">2번</div>
+        <div class="flex-item3 item3">3번</div>
+    </div>
+
+</body>
+</html>

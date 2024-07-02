@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="orderMapper">
+  	<resultMap id="productResultSet" type="Product">
+  		<result column="PRODUCT_ID" property="productId" />
+  		<result column="PRODUCT_NAME" property="productName" />
+  		<result column="PRODUCT_PRICE" property="productPrice" />
+  		<result column="PRODUCT_SALES" property="productSales" />
+  		<result column="STOCK" property="stock" />
+  		<result column="DELIVERY_DATE" property="deliveryDate" />
+  		<result column="SALE" property="sale" />
+  		<result column="PRODUCT_CONTENT" property="productContent" />
+  		<result column="PRODUCT_CREATE_TIME" property="productCreateTime" />
+  		<result column="PRODUCT_MODIFY_TIME" property="productModifyTime" />
+  		<result column="COMPANY_NAME" property="companyName" />
+  		<result column="PRODUCT_DELIVERY_PRICE" property="productDeliveryPrice" />
+  		<result column="PRODUCT_CATEGORY" property="productCategory" />
+  		<result column="PRODUCT_STATUS" property="productStatus" />
+  		<result column="REVIEW_COUNT" property="reviewCount" />
+  		<result column="RATING_AVG" property="ratingAvg" />
+  		<result column="PRODUCT_THUMBNAIL" property="productThumbnail" />
+  		<result column="MEMBERS_NO" property="membersNo" />
+  	</resultMap>
+  	<resultMap type="Category" id="CategoryRset">
+  		<result column="OPTIONS_NO" property="optionsNo" />
+  		<result column="OPTIONS_PDOPT_ID" property="productOptionsId" />
+  		<result column="OPTIONS_CATEGORY" property="optionsCategory" />
+  	</resultMap>
+  	<resultMap type="OptionsName" id="OptionsNameRset">
+  		<result column="OPTIONS_NAME_NO" property="optionsNameNo" />
+  		<result column="OPTIONS_NAME_OPT_NO" property="optionsCategoryNo" />
+  		<result column="OPTIONS_NAME" property="optionsName" />
+  		<result column="OPTIONS_PRICE" property="price" />
+  		<result column="OPTIONS_STOCK" property="stock" />
+  	</resultMap>
+  	<resultMap type="Order" id="OrderRset">
+  		<result column="ORDERS_ID" property="ordersId" />
+  		<result column="MEMBERS_NO" property="membersNo" />
+  		<result column="RECIPIENT_NAME" property="recipientName" />
+  		<result column="RECIPIENT_PHONE" property="recipientPhone" />
+  		<result column="RECIPIENT_EMAIL" property="recipientEmail" />
+  		<result column="RECIPIENT_ADDRESS" property="recipientAddress" />
+  		<result column="RECIPIENT_POSTCODE" property="recipientPostcode" />
+  		<result column="ORDERS_DATE" property="ordersDate" />
+  		<result column="TOTAL_PRICE" property="totalPrice" />
+  		<result column="ARRIVAL_DATE" property="arrivalDate" />
+  		<result column="REQURIEDMENT" property="requirement" />
+  		<result column="ORDERS_DELIVERY_STATUS" property="deliveryStatus" />
+  		<result column="ORDERS_STATUS" property="ordersStatus" />
+  	</resultMap>
+  	<resultMap type="OrderProduct" id="OrderProductRset">
+  		<result column="ORDERS_ID" property="orderId" />
+  		<result column="PRODUCT_ID" property="productId" />
+  		<result column="OPTIONS_NAME_NO" property="orderOptions" />
+  		<result column="AMOUNT" property="amount" />
+  	</resultMap>
+  <select id="selectDetailProduct" resultMap="productResultSet">
+   SELECT
+		P.PRODUCT_ID,
+		PRODUCT_NAME,
+		PRODUCT_PRICE,
+		PRODUCT_SALES,
+		STOCK,
+		DELIVERY_DATE,
+		SALE,
+		PRODUCT_CONTENT,
+		PRODUCT_CREATE_TIME,
+		PRODUCT_MODIFY_TIME,
+		COMPANY_NAME,
+		PRODUCT_DELIVERY_PRICE,
+		PRODUCT_CATEGORY,
+		FILE_PATH || CHANGE_NAME AS "PRODUCT_THUMBNAIL"
+	FROM PRODUCT P
+	JOIN MEDIA MED ON (P.PRODUCT_ID = MED.PRODUCT_ID)
+   	JOIN MEMBERS MEM ON (P.MEMBERS_NO = MEM.MEMBERS_NO)
+	WHERE P.PRODUCT_ID = #{productId}
+    AND PRODUCT_STATUS = 'Y'
+    AND FILE_LEVEL = 1
+		
+  </select>
+  
+  <select id="selectCategory" resultMap="CategoryRset">
+  	SELECT
+  		OPTIONS_NO, OPTIONS_PDOPT_ID, OPTIONS_CATEGORY
+  	FROM OPTIONS_CATEGORY
+  	WHERE OPTIONS_NO = #{cgNo}
+  </select>
+  
+  <select id="selectOptionsName" resultMap="OptionsNameRset">
+  	SELECT
+  		OPTIONS_NAME_NO, OPTIONS_NAME_OPT_NO, 
+  		OPTIONS_NAME, OPTIONS_PRICE, OPTIONS_STOCK
+  	FROM OPTIONS_NAME
+  	WHERE OPTIONS_NAME_NO = #{optNameNo}
+  </select>
+  
+  <insert id="insertOrder" useGeneratedKeys="true" keyColumn="ORDERS_ID" keyProperty="ordersId">
+  	INSERT
+  	INTO ORDERS
+  	(
+  		ORDERS_ID,
+  		MEMBERS_NO,
+  		RECIPIENT_NAME,
+		RECIPIENT_PHONE,
+		RECIPIENT_ADDRESS,
+		RECIPIENT_POSTCODE,
+		TOTAL_PRICE,
+		ARRIVAL_DATE,
+		REQURIEDMENT,
+		ORDERS_DELIVERY_STATUS
+  	)
+  	VALUES
+  	(
+  		SEQ_ORDID.NEXTVAL,
+  		#{membersNo},
+  		#{recipientName},
+  		#{recipientPhone},
+  		#{recipientAddress},
+  		DEFAULT,
+  		#{totalPrice},
+  		#{arrivalDate},
+  		#{requirement},
+  		DEFAULT
+  	)
+  </insert>
+  
+  <insert id="insertOrderProduct">
+  	INSERT
+  	INTO ORDERS_PRODUCT
+  	(	
+  		ORDERS_ID,
+		PRODUCT_ID,
+		OPTIONS_NAME_NO,
+		AMOUNT
+  	)
+  	VALUES
+  	(
+  		#{orderId},
+  		#{productId},
+  		#{orderOptions},
+  		#{amount}
+  	)
+  </insert>
+  
+  <select id="selectOrder" resultMap="OrderRset">
+  	SELECT 
+	  	ORDERS_ID,
+		MEMBERS_NO,
+		RECIPIENT_NAME,
+		RECIPIENT_PHONE,
+		RECIPIENT_EMAIL,
+		RECIPIENT_ADDRESS,
+		RECIPIENT_POSTCODE,
+		ORDERS_DATE,
+		TOTAL_PRICE,
+		ARRIVAL_DATE,
+		REQURIEDMENT,
+		ORDERS_DELIVERY_STATUS,
+		ORDERS_STATUS
+	FROM ORDERS
+	WHERE ORDERS_ID = #{orderId}
+  </select>
+  <select id="selectOrderProduct" resultMap="OrderProductRset">
+  	SELECT
+		ORDERS_ID,
+		PRODUCT_ID,
+		OPTIONS_NAME_NO,
+		AMOUNT
+  	FROM ORDERS_PRODUCT
+  	WHERE ORDERS_ID = #{orderId}
+  	AND PRODUCT_ID = #{productId}
+  	AND OPTIONS_NAME_NO = #{orderOptions}
+  </select>
+  <select id="selectCategoryList" resultMap="CategoryRset">
+  	SELECT
+  		OPTIONS_NO,
+  		OPTIONS_CATEGORY
+  	FROM OPTIONS_CATEGORY
+  	JOIN PRODUCT_OPTIONS ON (OPTIONS_PDOPT_ID = PRODUCT_OPTIONS_ID)
+  	WHERE PDOPT_PRODUCT_ID = #{productId}
+  </select>
+  <select id="selectOptionsNameList" resultMap="OptionsNameRset">
+  	SELECT
+  		OPTIONS_NAME_NO,
+  		OPTIONS_NAME,
+  		OPTIONS_PRICE
+  	FROM OPTIONS_NAME
+  	WHERE OPTIONS_NAME_OPT_NO = #{cgNo}
+  </select>
+ </mapper>
+
+  

@@ -1,0 +1,121 @@
+.content {
+    width: 1136px;
+}
+
+#sort,
+#content-page {
+    width: 100%;
+
+}
+
+#sort {
+    display: flex;
+    margin-bottom: 20px;
+    height: 40px;
+    gap: 5px;
+}
+
+/* .sort-button {
+    border: 0px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    color: rgb(0, 159, 206);
+    color: #828c94;
+    background-color: rgb(239, 251, 255);
+    margin-right: 4px;
+    font-weight: bold;
+    height: 30px;
+}
+
+.sorting {
+    position: relative;
+}
+
+.sorting-list {
+    list-style: none;
+    font-weight: bold;
+    padding-left: 0px;
+    border: 1px solid white;
+    color: black;
+    position: absolute;
+    width: 110px;
+    background-color: white;
+    box-shadow: 0px 0px 5px 5px #dadfe3a8;
+    top: 30px;
+    left: 0px;
+} */
+
+.area-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.area-form>input {
+    width: 90px;
+    
+}
+
+.area-form>input::-webkit-outer-spin-button,
+.area-form>input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.btn {
+    background: rgb(239, 251, 255);
+    color: #828c94;
+    border: none;
+}
+
+.hidden {
+    display: none;
+}
+
+/*게시글 관련*/
+
+#content-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.page {
+    /* border: 1px solid black; */
+    width: 370px;
+    height: 350px;
+
+}
+
+.content-img {
+    width: 350px;
+    height: 243px;
+    border-radius: 7px;
+    object-fit: cover;
+}
+
+.page-text-title {
+    font-size: 16px;
+    margin-top: 10px;
+    color: rgb(47, 52, 56);
+    font-weight: 700;
+}
+
+.page-text-img {
+    border-radius: 100px;
+    width: 30px;
+    margin-right: 3px;
+    object-fit: cover;
+}
+
+.page-text-name {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.page-text-scrap-count {
+    margin-top: 5px;
+}

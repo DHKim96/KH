@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html 태그에 접근하기</title>
+    <style>
+        div{
+            border: 1px solid black;
+            background-color: black;
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h3>문제1. 색상 선택 후 변경 버튼 클릭 시 색상 변경되도록 구현</h3>
+    <div id="div1"></div>
+    <input type="color" id="selectColor">
+    <button onclick="changeColor();">변경</button>
+    
+
+    <script>
+        function changeColor(){
+            const div1E1 = document.getElementById("div1");
+            const selectColorE = document.getElementById("selectColor");
+            console.log(selectColor.value);
+            div1E1.style.backgroundColor = selectColor.value;
+        }
+    </script>
+
+    <hr>
+    <br><br>
+
+    <h3>문제2. 버튼에 따른 크기 조절 가능하도록 구현</h3>
+
+    <div id="div2"></div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+    <button onclick="changeSize(50, 50);">50x50</button>
+    <button onclick="changeSize(100, 100);">원본(100x100)</button>
+    <button onclick="changeSize(200, 200);">200x200</button>
+
+    <script>
+        function changeSize(height, width){
+            const div2E1 = document.querySelector("#div2");
+            div2E1.style.height = `${height}px`;
+            div2E1.style.width = `${width}px`;
+        }
+    </script>
+
+
+</body>
+</html>

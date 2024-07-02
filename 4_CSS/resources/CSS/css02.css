@@ -1,0 +1,126 @@
+/* CSS 영역 
+    : 스타일 정보 바로 기입.
+*/
+/*1. 속성 선택자 -------------------------*/
+ /* div 요소들 중 name 속성값이 name1과 "일치"하는 요소  */
+div[name=name1]{
+    background-color: orange;
+}
+
+/* div 요소들 중 name 속성값이 name1이 "포함"되어있는 요소(키워드는 안됨) */
+div[name~=name1]{
+    background-color: yellow;
+}
+
+/* div 요소들 중 class 속성값이 class로 "시작"되는 요소(-로 구분, 단어로써) */
+div[class|=class]{
+    background-color: blue;
+}
+
+/* div 요소들 중 name 속성값이 na로 "시작"되는 요소 */
+div[name^=na]{
+    background-color: aqua;
+}
+
+
+/* div 요소들 중 class 속성값이 ss로 "끝"나는 요소 */
+div[class$=ss]{
+    color: wheat;
+}
+
+/* div 요소들 중에서 class 속성값에 i가 "포함"되어 있는 요소 */
+div[class*=i]{
+    background-color: yellow;
+    color: red;
+}
+
+/* 문제 : 
+    클래스 속성값이 div-class 인 요소들 중에서 name 속성값에 name3가 포함된 요소
+    의 배경색을 핑크로 바꾸기 */
+
+.div-class[name~=name3]{
+    background-color: pink;
+}
+
+
+/* 2. 자식 선택자와 후손 선택자 ------------------------------- */
+/* a>b : a요소의 자식들 중에서 b요소만 전부 선택 */
+
+/* 아이디가 test1인 요소들의 자식들 중 h4 요소만 선택 */
+
+
+#test1>h4{
+    background-color: aquamarine;
+}
+
+#test1>li{
+    background-color: blue;
+}  /* 자식에는 li가 없기에 안됨*/
+
+#test1>ul>li{
+    background-color: blue;
+}
+
+/* a b : a요소의 후손들 중에서 b요소 전부 선택 */
+#test1 li{
+    color: white;
+}
+
+/* 3. 동위 선택자 */
+#test2+div{
+    background-color: yellow;
+}
+
+#test2+ul{
+    background-color: yellow;
+} /* 바로 뒤에 있는 요소가 아니기에 선택되지 않음*/
+
+/* #test2~div{
+    background-color: aquamarine;
+} */
+
+#test2~ul{
+    background-color: aquamarine;
+} /*뒤에 있는 "모든" 요소이기에 선택됨*/
+
+/* 4. 반응 선택자 ----------------------------------------------- */
+.area{
+    background-color: yellowgreen;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+#active-test:active{
+    background-color: yellow;
+    color: red;
+}
+
+#hover-test:hover{
+    background-color: brown;
+    color: white;
+}
+
+/* 5. 상태 선택자 */
+input[type=checkbox]:checked{
+    width: 20px;
+    height: 20px;
+}
+
+input[type=checkbox]:checked+label{
+    font-size: 20px;
+}
+
+input[name^=user]:focus{
+    background-color: pink;
+}
+
+button:enabled{
+    background-color: violet;
+}
+
+button:disabled{
+    background-color: violet;
+    opacity: 0.98; /*선명도*/
+}
+

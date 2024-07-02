@@ -1,0 +1,238 @@
+
+* {
+  box-sizing: border-box;
+  outline: none; /*focus 시 테두리 나오게*/
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+body {
+  background: rgb(255, 255, 255);
+  line-height: 1;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 13px;
+  margin: 0;
+  padding: 0;
+}
+
+a{
+  text-decoration: none;
+}
+
+div{
+  box-sizing: border-box;
+  display: block;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.wrapper{
+  height: 100%;
+}
+
+section{
+  padding-top: 40px;
+  width: calc(100%-30px);
+  margin: 0px 15px;
+  height: 100%;
+}
+
+main{
+  width: 100%;
+  height: 100%;
+}
+
+.enroll{
+  width: 360px;
+  height: 100%;
+  margin: auto;
+}
+
+form{
+  margin: auto;
+  display: block;
+}
+
+header{
+  height: 70px;
+  width: 100%;
+  padding-top: 30px;
+}
+
+input{
+  width: 100%;
+  height: 40px;
+  padding: 8px 15px 9px;
+}
+
+p{
+  margin-top: 30px;
+  font-size: 15px;
+  text-align: center;
+}
+
+p > a{
+  padding: 0px 0px 0px 10px;
+  text-decoration: underline;
+  font-weight: bold;
+  color: black;
+}
+
+.logo{
+  height: 30px;
+  left: 0;
+}
+
+#enroll-id{
+  margin-bottom: 0px;
+}
+
+button{
+  margin-top: 12px;
+}
+
+span{
+  margin-bottom: 10px;
+}
+
+#enroll-id-input{
+  height: 40px;
+}
+
+#enroll-id input,
+#enroll-id select{
+  width: 170px;
+  height: 40px;
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+  padding: 8px 15px 9px;
+  border: 1px solid #dbdbdb;
+  background-color: #fff;
+  color: #000;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: Noto Sans KR, Noto Sans CJK KR, 맑은 고딕, Malgun Gothic, sans-serif;
+  font-size: 15px;
+  line-height: 21px;
+  transition: border-color .1s, background-color .1s;
+  resize: none;
+}
+
+label{
+  display: block;
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+  color: rgb(47, 52, 56);
+  letter-spacing: -0.3px;
+  word-break: keep-all;
+}
+
+#enroll-id-input{
+  display: flex;
+  margin-bottom: 0px;
+}
+
+#enroll-id-input span{
+  flex: 0 0 20px;
+  text-align: center;
+  line-height: 40px;
+  color: #dbdbdb;
+  width: 20px;
+  height: 40px;
+}
+
+#id-confirm-button{
+  height: 50px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+button {
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    transition: color .1s, background-color .1s, border-color .1s;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #c2c8cc;
+    font-size: 18px;
+
+}
+
+.enroll-notice{
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #828C94;
+  letter-spacing: -0.3px;
+}
+
+.margin30 {
+  margin-bottom: 30px;
+}
+
+.input-style{
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    padding: 8px 15px 9px;
+    border: 1px solid #dbdbdb;
+    background-color: #fff;
+    color: #000;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: Noto Sans KR, Noto Sans CJK KR, 맑은 고딕, Malgun Gothic, sans-serif;
+    font-size: 15px;
+    line-height: 21px;
+    transition: border-color .1s, background-color .1s;
+    resize: none;
+}
+
+.input-style::placeholder{
+  color: #dbdbdb;
+}
+
+#enroll-submit-button{
+  width: 100%;
+  height: 50px;
+}
+
+#enroll-submit{
+  margin-top: 10px;
+  background-color: #35c5f0;
+  border-color: #35c5f0;
+  color: #fff;
+}
+
+div[class*="warning"]{
+  padding-top: 10px;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgb(255, 119, 119);
+}
+
+div[class*="hide"]{
+  display: none;
+}
+
+option{
+  font-size: 14px;
+  background-color: #eee;;
+}

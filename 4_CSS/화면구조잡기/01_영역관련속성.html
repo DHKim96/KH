@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영역관련속성</title>
+    <style>
+
+        *{
+            box-sizing: border-box;
+        }
+
+        .test{
+        /*border*/
+            border: 10px solid black;
+
+        /*content영역*/
+            width: 350px;
+            height: 150px;
+            /*width와 height는 기본적으로 content영역을 조절*/
+
+            box-sizing: border-box; /*width&height영역을 border, padding 영역까지 확장=>따라서 조금 줄어듦*/
+        
+        /*padding*/
+            padding: 20px;
+
+        /*margin*/
+            margin: 40px;
+        
+        }  
+
+        .wrap{
+            border: 5px solid red;
+            width: 400px;
+            height: 200px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .test1, .test2{
+            border: 5px solid blue;
+            width: 100%;
+        }
+
+        .test1{
+            height: 40%;
+        }
+
+        .test2{
+            height: 60%;
+        }
+
+        .test3, .test4{
+            border: 5px solid blue;
+            height: 100%;
+            /* display: inline-block; */
+            /* float: left; */
+            display: flex;
+            flex-direction: row;
+        }
+
+        .test3{
+            /* width: 30%; */
+            flex: 1;
+        }
+
+        .test4{
+            /* width: 70%; */
+            flex: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>영역관련속성</h1>
+    <div class="test">
+        1) content 영역
+            : 요소 내의 내용물을 작성하는 영역 <br>
+        2) border 영역
+            : 요소 내의 테두리 영역 <br>
+        3) padding 영역
+            : content와 border 사이의 영역(여백) <br>
+        4) margin 영역
+            : 요소의 바깥쪽 영역
+    </div>
+
+    <h2>div 안에 다른 여러 개의 div 를 넣는 연습</h2>
+
+    <h3>상하 2등분하기</h3>
+    <div class="wrap">
+        <div class="test1"></div>
+        <div class="test2"></div>
+    </div>
+
+    <h3>좌우기준 2등분하기</h3>
+    <div class="wrap">
+        <div class="test3"></div>
+        <div class="test4"></div>
+    </div>
+
+</body>
+</html>

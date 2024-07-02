@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="productMapper">
+  	<resultMap id="productResultSet" type="Product">
+  		<result column="PRODUCT_ID" property="productId" />
+  		<result column="PRODUCT_NAME" property="productName" />
+  		<result column="PRODUCT_PRICE" property="productPrice" />
+  		<result column="PRODUCT_SALES" property="productSales" />
+  		<result column="STOCK" property="stock" />
+  		<result column="DELIVERY_DATE" property="deliveryDate" />
+  		<result column="SALE" property="sale" />
+  		<result column="PRODUCT_CONTENT" property="productContent" />
+  		<result column="PRODUCT_CREATE_TIME" property="productCreateTime" />
+  		<result column="PRODUCT_MODIFY_TIME" property="productModifyTime" />
+  		<result column="COMPANY_NAME" property="companyName" />
+  		<result column="PRODUCT_DELIVERY_PRICE" property="productDeliveryPrice" />
+  		<result column="PRODUCT_CATEGORY" property="productCategory" />
+  		<result column="PRODUCT_STATUS" property="productStatus" />
+  		<result column="REVIEW_COUNT" property="reviewCount" />
+  		<result column="RATING_AVG" property="ratingAvg" />
+  		<result column="PRODUCT_THUMBNAIL" property="productThumbnail" />
+  		<result column="MEMBERS_NO" property="membersNo" />
+  	</resultMap>
+  	<resultMap id="mediaResultSet" type="Media">
+  		<result column="MEDIA_ID" property="mediaId"/>
+  		<result column="PRODUCT_ID" property="mediaProductId"/>
+  		<result column="MEDIA_TYPE" property="mediaType"/>
+  		<result column="ORIGIN_NAME" property="originName"/>
+  		<result column="CHANGE_NAME" property="changeName"/>
+  		<result column="FILE_PATH" property="filePath"/>
+  		<result column="FILE_LEVEL" property="fileLevel"/>
+  		<result column="UPLOAD_DATE" property="uploadDate"/>
+  		<result column="MEDIA_STATUS" property="mediaStatus"/>
+  	</resultMap>
+  	<resultMap id="scrapResultSet" type="Scrap">
+  		<result column="SCRAP_ID" property="scrapId"/>
+  		<result column="SCRAP_TYPE" property="scrapType"/>
+  		<result column="PRODUCT_ID" property="scrapProductId"/>
+  		<result column="MEMBERS_NO" property="scrapMembersNo"/>
+  		<result column="SCRAP_CREATE_TIME" property="scrapCreateTime"/>
+  		<result column="SCRAP_STATUS" property="scrapStatus"/>
+  	</resultMap>
+  	
+  <insert id="insertProduct" >
+  INSERT
+  INTO PRODUCT
+  (
+		PRODUCT_ID,
+		PRODUCT_NAME,
+		PRODUCT_PRICE,
+		STOCK,
+		DELIVERY_DATE,
+		SALE,
+		PRODUCT_CONTENT,
+		MEMBERS_NO,
+		PRODUCT_DELIVERY_PRICE,
+		PRODUCT_CATEGORY
+	)
+	VALUES(
+		SEQ_PDID.NEXTVAL,
+		#{productName},
+		#{productPrice},
+		#{stock},
+		#{deliveryDate},
+		#{sale},
+		#{productContent},
+		#{membersNo},
+		#{productDeliveryPrice},
+		#{productCategory},
+	)
+  </insert>
+  <select id="selectDetailProduct" resultMap="productResultSet" parameterType="_int">
+  SELECT
+		PRODUCT_ID,
+		PRODUCT_NAME,
+		PRODUCT_PRICE,
+		PRODUCT_SALES,
+		STOCK,
+		DELIVERY_DATE,
+		SALE,
+		PRODUCT_CONTENT,
+		PRODUCT_CREATE_TIME,
+		PRODUCT_MODIFY_TIME,
+		MEMBERS_NO,
+		PRODUCT_DELIVERY_PRICE,
+		PRODUCT_CATEGORY
+	FROM PRODUCT
+	WHERE PRODUCT_ID = #{productId}
+		AND PRODUCT_STATUS = 'Y'
+  </select>
+  <select id="selectProductList" resultMap="productResultSet">
+   SELECT
+       P.PRODUCT_ID,
+       PRODUCT_NAME,
+       PRODUCT_PRICE,
+       SALE,
+       FILE_PATH || CHANGE_NAME AS "PRODUCT_THUMBNAIL",
+       COMPANY_NAME,
+       (
+           SELECT COUNT(*)
+           FROM REVIEW R
+           WHERE R.PRODUCT_ID = P.PRODUCT_ID
+       ) AS "REVIEW_COUNT",
+       (
+           SELECT AVG(RATING)
+           FROM REVIEW R
+           WHERE R.PRODUCT_ID = P.PRODUCT_ID
+       ) AS "RATING_AVG"
+   FROM PRODUCT P
+   JOIN MEDIA MED ON (P.PRODUCT_ID = MED.PRODUCT_ID)
+   JOIN MEMBERS MEM ON (P.MEMBERS_NO = MEM.MEMBERS_NO)
+   WHERE PRODUCT_STATUS = 'Y'
+   AND FILE_LEVEL = 1
+   ORDER BY
+   <choose>
+   	<when test="condition == 'review'">
+   		REVIEW_COUNT DESC
+   	</when>
+   	<when test="condition == 'priceDesc'">
+   		PRODUCT_PRICE DESC
+   	</when>
+   	<when test="condition == 'priceAsc'">
+   		PRODUCT_PRICE ASC
+   	</when>
+   	<when test="condition == 'saleDesc'">
+   		SALE DESC
+   	</when>
+   	<otherwise>
+   		PRODUCT_SALES DESC
+   	</otherwise>
+   </choose>
+  </select>
+   <select id="selectProductSaleList" resultMap="productResultSet">
+   SELECT
+       P.PRODUCT_ID,
+       PRODUCT_NAME,
+       PRODUCT_PRICE,
+       SALE,
+       FILE_PATH || CHANGE_NAME AS "PRODUCT_THUMBNAIL",
+       COMPANY_NAME,
+       (
+           SELECT COUNT(*)
+           FROM REVIEW R
+           WHERE R.PRODUCT_ID = P.PRODUCT_ID
+       ) AS "REVIEW_COUNT",
+       (
+           SELECT AVG(RATING)
+           FROM REVIEW R
+           WHERE R.PRODUCT_ID = P.PRODUCT_ID
+       ) AS "RATING_AVG"
+   FROM PRODUCT P
+   JOIN MEDIA MED ON (P.PRODUCT_ID = MED.PRODUCT_ID)
+   JOIN MEMBERS MEM ON (P.MEMBERS_NO = MEM.MEMBERS_NO)
+   WHERE PRODUCT_STATUS = 'Y'
+   AND FILE_LEVEL = 1
+   AND SALE != 0
+   ORDER BY SALE DESC 
+  </select>
+  <select id="selectProductListCount" resultType="_int">
+  	SELECT COUNT(*)
+	 FROM PRODUCT
+	 WHERE PRODUCT_STATUS = 'Y'
+	 <choose>
+	 	<when test="condition == 'saleDesc'">
+	 		AND SALE != 0
+	 	</when>
+	 </choose>
+  </select>
+  <update id="updateProduct">
+  	UPDATE PRODUCT
+	SET	PRODUCT_NAME = #{productName},
+		PRODUCT_PRICE = #{productPrice},
+		DELIVERY_DATE = #{deliveryDate}
+		SALE = #{sale},
+		PRODUCT_CONTENT = #{productContent},
+		PRODUCT_MODIFY_TIME = SYSDATE,
+		MEMBERS_NO = #{membersNo},
+		PRODUCT_DELIVERY_PRICE =#{productDeliveryPrice},
+		PRODUCT_CATEGORY = #{productCategory}
+	WHERE PRODUCT_ID = #{productId}
+  </update>
+  <update id="deleteProduct">
+  	UPDATE PRODUCT
+	SET	PRODUCT_STATUS = 'N'
+	WHERE PRODUCT_ID = #{productId}
+  </update>
+	<!-- ========================== 상품 이미지 관련 매퍼 ========================= -->
+	<insert id="insertProductMedia" parameterType="Media">
+	INSERT
+	INTO MEDIA
+	(
+		MEDIA_ID,
+		PRODUCT_ID,
+		MEDIA_TYPE,
+		ORIGIN_NAME,
+		CHANGE_NAME,
+		FILE_PATH,
+	)
+	VALUES
+	(
+		SEQ_MEDID.NEXTVAL,
+		#{mediaProductId},
+		1,
+		#{originName},
+		#{changeName},
+		#{filePath}
+	)
+	</insert>
+	
+	<select id="selectProductThumbnail" resultMap="mediaResultSet" parameterType="_int">
+	SELECT
+		MEDIA_ID,
+		FILE_PATH
+	FROM MEDIA
+	WHERE PRODUCT_ID = #{productId}
+	 AND FILE_LEVEL = 1
+	 AND MEDIA_STATUS = 'Y'
+	</select>
+	<select id="selectProductMedia" resultMap="mediaResultSet" parameterType="_int">
+	SELECT
+		MEDIA_ID,
+		FILE_PATH
+	FROM MEDIA
+	WHERE PRODUCT_ID = #{mediaProductId}
+	  AND FILE_LEVEL = 2
+	  AND MEDIA_STATUS = 'Y'
+	</select>
+	<update id="updateProductMedia" parameterType="Media">
+	UPDATE MEDIA
+	SET ORIGIN_NAME = #{originName},
+		CHANGE_NAME = #{changeName},
+		FILE_PATH = #{filePath}
+	WHERE MEDIA_ID = #{mediaProductId}
+	</update>
+	<update id="deleteProductMedia" parameterType="_int">
+	UPDATE MEDIA
+	SET MEDIA_STATUS = 'N'
+	WHERE MEDIA_ID = #{mediaId}
+	</update>
+	<!-- =================== 상품 스크랩 매퍼 =========================== -->
+	<insert id="insertProductScrap" parameterType="Scrap">
+	INSERT
+	INTO SCRAP
+	(
+		SCRAP_ID,
+		SCRAP_TYPE,
+		MEMBERS_NO,
+		PRODUCT_ID
+	)
+	VALUES
+	(
+		SEQ_SCRID.NEXTVAL,
+		1,
+		${scrapMembersNo},
+		${scrapProductId}
+	)
+	</insert>
+	<select id="productScrapstatusCheck" resultType="_int">
+		SELECT COUNT(*)
+		FROM SCRAP
+		WHERE MEMBERS_NO = ${scrapMembersNo}
+		AND PRODUCT_ID = ${scrapProductId}
+	</select>
+	<update id="productScrapUpdate">
+		UPDATE SCRAP
+		SET SCRAP_STATUS = #{scrapStatus}
+		WHERE MEMBERS_NO = ${scrapMembersNo}
+		AND PRODUCT_ID = ${scrapProductId}
+	</update>
+	<select id="selectProductCategoryList" resultMap="productResultSet">
+		SELECT
+       P.PRODUCT_ID,
+       PRODUCT_NAME,
+       PRODUCT_PRICE,
+       SALE,
+       FILE_PATH || CHANGE_NAME AS "PRODUCT_THUMBNAIL",
+       COMPANY_NAME,
+       (
+           SELECT COUNT(*)
+           FROM REVIEW R
+           WHERE R.PRODUCT_ID = P.PRODUCT_ID
+       ) AS "REVIEW_COUNT",
+       (
+           SELECT AVG(RATING)
+           FROM REVIEW R
+           WHERE R.PRODUCT_ID = P.PRODUCT_ID
+       ) AS "RATING_AVG",
+       PRODUCT_CATEGORY
+	   FROM PRODUCT P
+	   JOIN MEDIA MED ON (P.PRODUCT_ID = MED.PRODUCT_ID)
+	   JOIN MEMBERS MEM ON (P.MEMBERS_NO = MEM.MEMBERS_NO)
+	   WHERE PRODUCT_STATUS = 'Y'
+	   AND FILE_LEVEL = 1
+	   AND PRODUCT_CATEGORY = ${cNo}
+	</select>
+	
+	<!-- =========================== 상품 옵션 매퍼 ================================ -->
+	
+	<!-- ========================== 주문 매퍼 ============================ -->
+	
+	<!--  ============================ 장바구니 매퍼 ============================== -->
+	
+	<!--  ========================== QNA 매퍼 ================================= -->
+	
+	<!-- =================================== 리뷰 매퍼 ========================== -->
+  </mapper>
+
+  

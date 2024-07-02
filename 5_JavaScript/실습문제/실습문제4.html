@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습문제4</title>
+    <style>
+        input{
+            width: 200px;
+        }
+        #amount{
+            width: 60px;
+        }
+        #grade{
+            width: 150px;
+        }
+        #submit{
+            width: 130px;
+        }
+        #result{
+            border: 1px solid black;
+            height: 150px;
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Practice4</h1>
+
+    <form action="">
+        <fieldset>
+            <legend><strong>구매 정보</strong></legend>
+            <ul>
+                <li>
+                    <label for="buyerName">구매자 :</label>
+                    <input type="text" id="buyerName" placeholder="구매자의 이름을 입력하세요">
+                </li>
+                <li>
+                    <label for="productName">상품명 :</label>
+                    <input type="text" id="productName" placeholder="구매 상품 명을 입력하세요">
+                </li>
+                <li>
+                    <label for="price">가격 :</label>
+                    <input type="text" id="price" placeholder="구매 가격을 입력하세요">
+                </li>
+                <li>
+                    <label for="amount">구매 수량 :</label>
+                    <input type="number" id="amount" placeholder="최소 10" min="10" max="100" step="10">
+                </li>
+                <li>
+                    <label for="grade">납품 등급 :</label>
+                    <input type="range" id="grade" min="1" max="9" step="2" value="1" >
+                </li>
+                <li>
+                    <label for="etc">기타 사항</label>
+                    <textarea name="" id="etc" cols="50" rows="8"></textarea>
+                </li>
+            </ul>
+        </fieldset>
+        <br>
+        <input type="submit" id="submit" value="입력 값 출력하기">
+    </form>
+    <br>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("submit").addEventListener("click", function(){
+            const infoArr = document.getElementsByTagName("input");
+            const result = document.getElementById("result");
+            for(let i = 0 ; i < infoArr.length ; i++){
+                switch(i){
+                    case 0 :
+                        result.innerHTML += `구매자 명 : ${infoArr[0].value}님<br>`;
+                        break;
+                    case 1 :
+                        result.innerHTML += `상품 명 : ${infoArr[1].value}<br>`;
+                        break;
+                    case 2 :
+                        result.innerHTML += `가격 : ${infoArr[2].value}만원<br>`;
+                        break;
+                    case 3 :
+                        result.innerHTML += `구매 수량 : ${infoArr[3].value}개<br>`;
+                        break;
+                    case 4 :
+                        result.innerHTML += `납품 등급 : ${infoArr[4].value}등급<br>`;
+                }
+            }
+            result.innerHTML += `기타 사항: ${document.getElementById("etc").value}<br>`;
+            event.preventDefault();
+        })
+    </script>
+
+</body>
+</html>
